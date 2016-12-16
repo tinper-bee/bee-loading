@@ -1,24 +1,28 @@
-import Loading from '../src/index';
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-class Demo extends Component {
+/**
+ *
+ * @title 不同大小的加载
+ * @description 通过`size`属性控制加载大小
+ *
+ */
 
+class Demo3 extends Component {
     render() {
         return (
-            <div>
-
+            <div className="demoPadding">
                 <div className="dispalyDiv">
-                    <Loading size="sm" colors="primary"/>
+                    <Loading size="sm"/>
                 </div>
                 <div className="dispalyDiv">
-                    <Loading size="lg" colors="warning"/>
-                </div>
-
-                <div className="dispalyDiv">
-                    <Loading loadingType="line"/>
+                    <Loading />
                 </div>
                 <div className="dispalyDiv">
-                    <Loading loadingType="line" size="sm"></Loading>
+                    <Loading size="lg"/>
+                </div>
+                <div className="dispalyDiv">
+                    <Loading loadingType="line" size="sm"/>
+                </div>
+                <div className="dispalyDiv">
+                    <Loading loadingType="line" />
                 </div>
                 <div className="dispalyDiv">
                     <Loading loadingType="line" size="lg"/>
@@ -27,4 +31,3 @@ class Demo extends Component {
         )
     }
 }
-export default Demo;
