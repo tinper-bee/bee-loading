@@ -4,6 +4,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -12,9 +14,17 @@ var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
+var _tinperBeeCore = require('tinper-bee-core');
+
+var _beeModal = require('bee-modal');
+
+var _beeModal2 = _interopRequireDefault(_beeModal);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -39,13 +49,18 @@ var propTypes = {
     /**
      * @title 不同颜色
      */
-    colors: _react.PropTypes.oneOf(['primary', 'success', 'warning'])
+    colors: _react.PropTypes.oneOf(['primary', 'success', 'warning']),
+    /**
+     * @title 模态加载
+     */
+    useModal: _react.PropTypes.bool
+
 };
 var defaultProps = {
-    clsPrefix: 'u-loader',
+    clsPrefix: 'u-loading',
     loadingType: 'rotate',
-    size: '',
-    color: ''
+    color: '',
+    useModal: false
 
 };
 
@@ -77,10 +92,21 @@ var Loading = function (_Component) {
             clsPrefix = _props.clsPrefix,
             loadingType = _props.loadingType,
             size = _props.size,
-            colors = _props.colors;
-
+            colors = _props.colors,
+            children = _props.children,
+            useModal = _props.useModal,
+            others = _objectWithoutProperties(_props, ['clsPrefix', 'loadingType', 'size', 'colors', 'children', 'useModal']);
 
         var clsObj = {};
+
+        var modalContentStyle = {
+            border: "none",
+            boxShadow: "none",
+            background: "transparent",
+            textAlign: "center"
+        };
+
+        var modalDialogStyle = ' u-modal-diaload ';
 
         if (loadingTypeMap[loadingType]) {
             clsObj[clsPrefix + '-' + loadingTypeMap[loadingType]] = true;
@@ -111,6 +137,24 @@ var Loading = function (_Component) {
                 _react2["default"].createElement('div', null),
                 _react2["default"].createElement('div', null),
                 _react2["default"].createElement('div', null)
+            );
+        }
+        if (useModal) {
+            return _react2["default"].createElement(
+                _beeModal2["default"],
+                _extends({}, others, { contentStyle: modalContentStyle, dialogClassName: modalDialogStyle }),
+                dom,
+                _react2["default"].createElement(
+                    'div',
+                    { className: 'u-loading-desc' },
+                    _react2["default"].createElement(
+                        'span',
+                        null,
+                        ' ',
+                        children,
+                        ' '
+                    )
+                )
             );
         }
         return _react2["default"].createElement(

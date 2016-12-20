@@ -8,11 +8,14 @@
 class Demo2 extends Component {
     render () {
         return (
-        <div className="demoPadding">
-            <Loading />
-            <Loading loadingType="line"/>
-        </div>
-
+            <Row>
+                <Col md={2} xs={6}>
+                    <Loading />
+                </Col>
+                <Col md={2} xs={6}>
+                    <Loading loadingType="line"/>
+                </Col>
+            </Row>
         )
     }
 }

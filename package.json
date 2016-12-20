@@ -1,6 +1,6 @@
 {
   "name": "bee-loading",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Loading ui component for react",
   "keywords": [
     "react",
@@ -44,6 +44,9 @@
       "react-addons-test-utils": "15.3.2",
       "react-dom": "~0.14.0",
       "console-polyfill": "~0.2.1",
-      "es5-shim": "~4.1.10"
+      "es5-shim": "~4.1.10",
+      "bee-layout": "latest",
+      "bee-button": "latest",
+      "bee-panel": "latest"
     }
 }

@@ -22,10 +22,7 @@ const CARETUP = <i className="uf uf-chevronarrowup"></i>;
 class Demo1 extends Component {
     render () {
         return (
-        <div className="demoPadding">
             <Loading />
-        </div>
-
         )
     }
 }
@@ -39,11 +36,14 @@ class Demo1 extends Component {
 class Demo2 extends Component {
     render () {
         return (
-        <div className="demoPadding">
-            <Loading />
-            <Loading loadingType="line"/>
-        </div>
-
+            <Row>
+                <Col md={2} xs={6}>
+                    <Loading />
+                </Col>
+                <Col md={2} xs={6}>
+                    <Loading loadingType="line"/>
+                </Col>
+            </Row>
         )
     }
 }
@@ -57,26 +57,26 @@ class Demo2 extends Component {
 class Demo3 extends Component {
     render() {
         return (
-            <div className="demoPadding">
-                <div className="dispalyDiv">
+            <Row>
+                <Col sm={2} xs={4}>
                     <Loading size="sm"/>
-                </div>
-                <div className="dispalyDiv">
+                </Col>
+                <Col sm={2}>
                     <Loading />
-                </div>
-                <div className="dispalyDiv">
+                </Col>
+                <Col sm={2}>
                     <Loading size="lg"/>
-                </div>
-                <div className="dispalyDiv">
+                </Col>
+                <Col sm={2}>
                     <Loading loadingType="line" size="sm"/>
-                </div>
-                <div className="dispalyDiv">
+                </Col>
+                <Col sm={2}>
                     <Loading loadingType="line" />
-                </div>
-                <div className="dispalyDiv">
+                </Col>
+                <Col sm={2}>
                     <Loading loadingType="line" size="lg"/>
-                </div>
-            </div>
+                </Col>
+            </Row>
         )
     }
 }
@@ -91,26 +91,26 @@ class Demo4 extends Component {
 
     render () {
         return (
-            <div className="demoPadding">
-                <div className="dispalyDiv">
+            <Row>
+                <Col sm={2} xs={4}>
                     <Loading  colors="primary"/>
-                </div>
-                <div className="dispalyDiv">
+                </Col>
+                <Col sm={2} xs={4}>
                     <Loading  colors="success"/>
-                </div>
-                <div className="dispalyDiv">
+                </Col>
+                <Col sm={2} xs={4}>
                     <Loading  colors="warning"/>
-                </div>
-                <div className="dispalyDiv">
+                </Col>
+                <Col sm={2} xs={4}>
                     <Loading  loadingType="line" colors="primary"/>
-                </div>
-                <div className="dispalyDiv">
+                </Col>
+                <Col sm={2} xs={4}>
                     <Loading  loadingType="line" colors="success"/>
-                </div>
-                <div className="dispalyDiv">
+                </Col>
+                <Col sm={2} xs={4}>
                     <Loading  loadingType="line" colors="warning"/>
-                </div>
-            </div>
+                </Col>
+            </Row>
         )
     }
 }
@@ -159,7 +159,7 @@ class Demo5 extends Component {
         )
     }
 }
-var DemoArray = [{"example":<Demo1 />,"title":" 默认加载","code":"/**\r\n *\r\n * @title 默认加载\r\n * @description 基础加载\r\n *\r\n */\r\n\r\nclass Demo1 extends Component {\r\n    render () {\r\n        return (\r\n        <div className=\"demoPadding\">\r\n            <Loading />\r\n        </div>\r\n\r\n        )\r\n    }\r\n}\r\n","desc":" 基础加载"},{"example":<Demo2 />,"title":" 不同形状加载","code":"/**\r\n *\r\n * @title 不同形状加载\r\n * @description 通过`loadingType`属性控制加载形状\r\n *\r\n */\r\n\r\nclass Demo2 extends Component {\r\n    render () {\r\n        return (\r\n        <div className=\"demoPadding\">\r\n            <Loading />\r\n            <Loading loadingType=\"line\"/>\r\n        </div>\r\n\r\n        )\r\n    }\r\n}\r\n","desc":" 通过`loadingType`属性控制加载形状"},{"example":<Demo3 />,"title":" 不同大小的加载","code":"/**\r\n *\r\n * @title 不同大小的加载\r\n * @description 通过`size`属性控制加载大小\r\n *\r\n */\r\n\r\nclass Demo3 extends Component {\r\n    render() {\r\n        return (\r\n            <div className=\"demoPadding\">\r\n                <div className=\"dispalyDiv\">\r\n                    <Loading size=\"sm\"/>\r\n                </div>\r\n                <div className=\"dispalyDiv\">\r\n                    <Loading />\r\n                </div>\r\n                <div className=\"dispalyDiv\">\r\n                    <Loading size=\"lg\"/>\r\n                </div>\r\n                <div className=\"dispalyDiv\">\r\n                    <Loading loadingType=\"line\" size=\"sm\"/>\r\n                </div>\r\n                <div className=\"dispalyDiv\">\r\n                    <Loading loadingType=\"line\" />\r\n                </div>\r\n                <div className=\"dispalyDiv\">\r\n                    <Loading loadingType=\"line\" size=\"lg\"/>\r\n                </div>\r\n            </div>\r\n        )\r\n    }\r\n}\r\n","desc":" 通过`size`属性控制加载大小"},{"example":<Demo4 />,"title":" 不同颜色的加载","code":"/**\r\n *\r\n * @title 不同颜色的加载\r\n * @description 通过`colors`属性控制加载颜色\r\n *\r\n */\r\n\r\nclass Demo4 extends Component {\r\n\r\n    render () {\r\n        return (\r\n            <div className=\"demoPadding\">\r\n                <div className=\"dispalyDiv\">\r\n                    <Loading  colors=\"primary\"/>\r\n                </div>\r\n                <div className=\"dispalyDiv\">\r\n                    <Loading  colors=\"success\"/>\r\n                </div>\r\n                <div className=\"dispalyDiv\">\r\n                    <Loading  colors=\"warning\"/>\r\n                </div>\r\n                <div className=\"dispalyDiv\">\r\n                    <Loading  loadingType=\"line\" colors=\"primary\"/>\r\n                </div>\r\n                <div className=\"dispalyDiv\">\r\n                    <Loading  loadingType=\"line\" colors=\"success\"/>\r\n                </div>\r\n                <div className=\"dispalyDiv\">\r\n                    <Loading  loadingType=\"line\" colors=\"warning\"/>\r\n                </div>\r\n            </div>\r\n        )\r\n    }\r\n}\r\n","desc":" 通过`colors`属性控制加载颜色"},{"example":<Demo5 />,"title":" 模态加载","code":"/**\r\n *\r\n * @title 模态加载\r\n * @description 通过`useModal` `show`等属性显示模态加载\r\n *\r\n */\r\n\r\nclass Demo5 extends Component {\r\n    constructor(props){\r\n        super(props);\r\n        this.state = {\r\n            open: false\r\n        };\r\n        this.handleClick = this.handleClick.bind(this);\r\n\r\n    }\r\n    handleClick () {\r\n        this.setState(\r\n            { open : true}\r\n        );\r\n\r\n        setTimeout(() => {\r\n            this.setState(\r\n                { open : false }\r\n            );\r\n        },3000)\r\n    }\r\n\r\n\r\n\r\n    render() {\r\n        let open = this.state.open;\r\n        return (\r\n            <div className=\"demoPadding\">\r\n                <div className=\"dispalyDiv\">\r\n                    <Button colors=\"primary\" size=\"lg\" onClick={this.handleClick\r\n             }>点我点我\r\n                    </Button>\r\n                    <Loading loadingType=\"line\" size=\"lg\" colors=\"primary\" useModal\r\n                             show={open}>加载中......</Loading>\r\n                </div>\r\n            </div>\r\n        )\r\n    }\r\n}\r\n","desc":" 通过`useModal` `show`等属性显示模态加载"}]
+var DemoArray = [{"example":<Demo1 />,"title":" 默认加载","code":"/**\r\n *\r\n * @title 默认加载\r\n * @description 基础加载\r\n *\r\n */\r\n\r\nclass Demo1 extends Component {\r\n    render () {\r\n        return (\r\n            <Loading />\r\n        )\r\n    }\r\n}\r\n","desc":" 基础加载"},{"example":<Demo2 />,"title":" 不同形状加载","code":"/**\r\n *\r\n * @title 不同形状加载\r\n * @description 通过`loadingType`属性控制加载形状\r\n *\r\n */\r\n\r\nclass Demo2 extends Component {\r\n    render () {\r\n        return (\r\n            <Row>\r\n                <Col md={2} xs={6}>\r\n                    <Loading />\r\n                </Col>\r\n                <Col md={2} xs={6}>\r\n                    <Loading loadingType=\"line\"/>\r\n                </Col>\r\n            </Row>\r\n        )\r\n    }\r\n}\r\n","desc":" 通过`loadingType`属性控制加载形状"},{"example":<Demo3 />,"title":" 不同大小的加载","code":"/**\r\n *\r\n * @title 不同大小的加载\r\n * @description 通过`size`属性控制加载大小\r\n *\r\n */\r\n\r\nclass Demo3 extends Component {\r\n    render() {\r\n        return (\r\n            <Row>\r\n                <Col sm={2} xs={4}>\r\n                    <Loading size=\"sm\"/>\r\n                </Col>\r\n                <Col sm={2}>\r\n                    <Loading />\r\n                </Col>\r\n                <Col sm={2}>\r\n                    <Loading size=\"lg\"/>\r\n                </Col>\r\n                <Col sm={2}>\r\n                    <Loading loadingType=\"line\" size=\"sm\"/>\r\n                </Col>\r\n                <Col sm={2}>\r\n                    <Loading loadingType=\"line\" />\r\n                </Col>\r\n                <Col sm={2}>\r\n                    <Loading loadingType=\"line\" size=\"lg\"/>\r\n                </Col>\r\n            </Row>\r\n        )\r\n    }\r\n}\r\n","desc":" 通过`size`属性控制加载大小"},{"example":<Demo4 />,"title":" 不同颜色的加载","code":"/**\r\n *\r\n * @title 不同颜色的加载\r\n * @description 通过`colors`属性控制加载颜色\r\n *\r\n */\r\n\r\nclass Demo4 extends Component {\r\n\r\n    render () {\r\n        return (\r\n            <Row>\r\n                <Col sm={2} xs={4}>\r\n                    <Loading  colors=\"primary\"/>\r\n                </Col>\r\n                <Col sm={2} xs={4}>\r\n                    <Loading  colors=\"success\"/>\r\n                </Col>\r\n                <Col sm={2} xs={4}>\r\n                    <Loading  colors=\"warning\"/>\r\n                </Col>\r\n                <Col sm={2} xs={4}>\r\n                    <Loading  loadingType=\"line\" colors=\"primary\"/>\r\n                </Col>\r\n                <Col sm={2} xs={4}>\r\n                    <Loading  loadingType=\"line\" colors=\"success\"/>\r\n                </Col>\r\n                <Col sm={2} xs={4}>\r\n                    <Loading  loadingType=\"line\" colors=\"warning\"/>\r\n                </Col>\r\n            </Row>\r\n        )\r\n    }\r\n}\r\n","desc":" 通过`colors`属性控制加载颜色"},{"example":<Demo5 />,"title":" 模态加载","code":"/**\r\n *\r\n * @title 模态加载\r\n * @description 通过`useModal` `show`等属性显示模态加载\r\n *\r\n */\r\n\r\nclass Demo5 extends Component {\r\n    constructor(props){\r\n        super(props);\r\n        this.state = {\r\n            open: false\r\n        };\r\n        this.handleClick = this.handleClick.bind(this);\r\n\r\n    }\r\n    handleClick () {\r\n        this.setState(\r\n            { open : true}\r\n        );\r\n\r\n        setTimeout(() => {\r\n            this.setState(\r\n                { open : false }\r\n            );\r\n        },3000)\r\n    }\r\n\r\n\r\n\r\n    render() {\r\n        let open = this.state.open;\r\n        return (\r\n            <div className=\"demoPadding\">\r\n                <div className=\"dispalyDiv\">\r\n                    <Button colors=\"primary\" size=\"lg\" onClick={this.handleClick\r\n             }>点我点我\r\n                    </Button>\r\n                    <Loading loadingType=\"line\" size=\"lg\" colors=\"primary\" useModal\r\n                             show={open}>加载中......</Loading>\r\n                </div>\r\n            </div>\r\n        )\r\n    }\r\n}\r\n","desc":" 通过`useModal` `show`等属性显示模态加载"}]
 
 
 class Demo extends Component {
@@ -186,23 +186,12 @@ class Demo extends Component {
             </Button>
         );
 
-        const header = (
-            <Row>
-                <Col md={11}>
-                { example }
-                </Col>
-                <Col md={1}>
-                <Button shape="icon" onClick={ this.handleClick }>
-                    { caret }
-                </Button>
-                </Col>
-            </Row>
-        );
+        
         return (
-            <Col md={10} mdOffset={1} sm={12} smOffset={0}>
+            <Col md={12}>
                 <h3>{ title }</h3>
                 <p>{ desc }</p>
-                <Panel collapsible expanded={ this.state.open } colors='bordered' header={ header } footer={footer} footerStyle = {{padding: 0}}>
+                <Panel collapsible headerContent expanded={ this.state.open } colors='bordered' header={ example } footer={footer} footerStyle = {{padding: 0, borderColor: "transparent"}}>
                     <pre><code className="hljs javascript">{ code }</code></pre>
                 </Panel>
             </Col>

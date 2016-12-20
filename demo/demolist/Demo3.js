@@ -8,26 +8,26 @@
 class Demo3 extends Component {
     render() {
         return (
-            <div className="demoPadding">
-                <div className="dispalyDiv">
+            <Row>
+                <Col sm={2} xs={4}>
                     <Loading size="sm"/>
-                </div>
-                <div className="dispalyDiv">
+                </Col>
+                <Col sm={2} xs={4}>
                     <Loading />
-                </div>
-                <div className="dispalyDiv">
+                </Col>
+                <Col sm={2} xs={4}>
                     <Loading size="lg"/>
-                </div>
-                <div className="dispalyDiv">
+                </Col>
+                <Col sm={2} xs={4}>
                     <Loading loadingType="line" size="sm"/>
-                </div>
-                <div className="dispalyDiv">
+                </Col>
+                <Col sm={2} xs={4}>
                     <Loading loadingType="line" />
-                </div>
-                <div className="dispalyDiv">
+                </Col>
+                <Col sm={2} xs={4}>
                     <Loading loadingType="line" size="lg"/>
-                </div>
-            </div>
+                </Col>
+            </Row>
         )
     }
 }

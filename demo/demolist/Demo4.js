@@ -9,26 +9,26 @@ class Demo4 extends Component {
 
     render () {
         return (
-            <div className="demoPadding">
-                <div className="dispalyDiv">
+            <Row>
+                <Col sm={2} xs={4}>
                     <Loading  colors="primary"/>
-                </div>
-                <div className="dispalyDiv">
+                </Col>
+                <Col sm={2} xs={4}>
                     <Loading  colors="success"/>
-                </div>
-                <div className="dispalyDiv">
+                </Col>
+                <Col sm={2} xs={4}>
                     <Loading  colors="warning"/>
-                </div>
-                <div className="dispalyDiv">
+                </Col>
+                <Col sm={2} xs={4}>
                     <Loading  loadingType="line" colors="primary"/>
-                </div>
-                <div className="dispalyDiv">
+                </Col>
+                <Col sm={2} xs={4}>
                     <Loading  loadingType="line" colors="success"/>
-                </div>
-                <div className="dispalyDiv">
+                </Col>
+                <Col sm={2} xs={4}>
                     <Loading  loadingType="line" colors="warning"/>
-                </div>
-            </div>
+                </Col>
+            </Row>
         )
     }
 }
