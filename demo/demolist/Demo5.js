@@ -9,37 +9,60 @@ class Demo5 extends Component {
     constructor(props){
         super(props);
         this.state = {
-            open: false
+            showModal: false,
+            modalDropup: true
         };
-        this.handleClick = this.handleClick.bind(this);
+        this.close = this.close.bind(this);
+        this.open = this.open.bind(this);
+        this.changeDropup = this.changeDropup.bind(this);
 
     }
-    handleClick () {
+    open() {
+        this.setState({
+            showModal: true
+        });
+    }
+    close() {
         this.setState(
-            { open : true}
-        );
+            {  showModal: false
 
-        setTimeout(() => {
-            this.setState(
-                { open : false }
-            );
-        },3000)
+            })
+        ;
     }
-
-
-
+    changeDropup(state) {
+        this.setState({
+            modalDropup: state
+        });
+    }
     render() {
+
+        let modalContentStyle = {
+            border: "none",
+            boxShadow: "none",
+            background: "transparent",
+            textAlign: "center"
+        };
+
+        let modalDialogStyle = ' u-modal-diaload ';
+
         let open = this.state.open;
         return (
             <div className="demoPadding">
                 <div className="dispalyDiv">
-                    <Button colors="primary" size="lg" onClick={this.handleClick
-             }>点我点我
+                    <Button colors="primary" size="lg" onClick={ ()=>{this.changeDropup("static");this.open();} }>带关闭按钮模态加载
                     </Button>
-                    <Loading loadingType="line" size="lg" colors="primary" useModal
-                             show={open}>加载中......</Loading>
+                    <Modal   backdrop={ this.state.modalDropup } show={ this.state.showModal }  onHide={ this.close }
+                             contentStyle={ modalContentStyle } dialogClassName={modalDialogStyle}>
+                        <Modal.Header closeButton >
+                        </Modal.Header >
+                        <Modal.Body >
+                            <Loading loadingType="line" >eeeee</Loading>
+
+                        </Modal.Body >
+                    </Modal>
                 </div>
             </div>
+
         )
     }
 }

@@ -1,32 +1,25 @@
 /**
  *
- * @title 不同颜色的加载
- * @description 通过`colors`属性控制加载颜色
+ * @title 带有文字描述和带有背景色
+ * @description
  *
  */
 
 class Demo4 extends Component {
-
     render () {
         return (
             <Row>
                 <Col sm={2} xs={4}>
-                    <Loading  colors="primary"/>
+                    <Loading describe>加载中...</Loading>
                 </Col>
                 <Col sm={2} xs={4}>
-                    <Loading  colors="success"/>
+                    <Loading  backColor="dark" describe>加载中...</Loading>
                 </Col>
                 <Col sm={2} xs={4}>
-                    <Loading  colors="warning"/>
+                    <Loading describe loadingType="line">加载中...</Loading>
                 </Col>
                 <Col sm={2} xs={4}>
-                    <Loading  loadingType="line" colors="primary"/>
-                </Col>
-                <Col sm={2} xs={4}>
-                    <Loading  loadingType="line" colors="success"/>
-                </Col>
-                <Col sm={2} xs={4}>
-                    <Loading  loadingType="line" colors="warning"/>
+                    <Loading  loadingType="line"  backColor="dark"></Loading>
                 </Col>
             </Row>
         )
