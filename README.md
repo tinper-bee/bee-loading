@@ -52,6 +52,8 @@ import "./node_modules/bee-loading/build/Loding.css"
 |loadingType|类型(`rotate` `line`)|string|''|
 |size|加载大小(`large` `medium` `small`)|string|medium|
 |colors|颜色(`primary` `success``warning`)|string|''|
+|backColor|背景颜色(`light` `dark`)|string|'light'|
+|describe|是否带有文字||boolean|false|
 
 #### 开发调试
 
