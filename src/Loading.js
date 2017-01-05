@@ -2,13 +2,13 @@ import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react';
 import classnames from 'classnames';
 import {componentOrElement} from 'tinper-bee-core';
-import Modal from 'bee-modal';
 
 const propTypes = {
     /**
      * @title 默认的公共类׺
      */
     clsPrefix: PropTypes.string,
+    clsLoadBack: PropTypes.string,
     /**
      * @title 不同loading样式
      */
@@ -23,18 +23,21 @@ const propTypes = {
      */
     colors: PropTypes.oneOf(['primary', 'success', 'warning']),
     /**
-     * @title 模态加载
+     * @title 不同背景色
      */
-    useModal: PropTypes.bool
-
-
+    backColor: PropTypes.oneOf(['light', 'dark']),
+    /**
+     * @title 是否带有文字内容
+     */
+    describe:PropTypes.bool
 };
 const defaultProps = {
     clsPrefix: 'u-loading',
+    clsLoadBack: 'u-loading-back',
     loadingType: 'rotate',
-    color: '',
-    useModal: false
-
+    colors: '',
+    backColor: 'light',
+    describe:false
 };
 
 const sizeMap = {
@@ -54,30 +57,24 @@ const sizeMap = {
 class Loading extends Component {
     constructor(props) {
         super(props);
+
     }
-
-
     render() {
         const {
             clsPrefix,
+            clsLoadBack,
             loadingType,
             size,
             colors,
+            backColor,
+            describe,
             children,
-            useModal,
             ...others
             } = this.props;
 
         let clsObj = {};
 
-        let modalContentStyle = {
-            border: "none",
-            boxShadow: "none",
-            background: "transparent",
-            textAlign: "center"
-        };
 
-        let modalDialogStyle = ' u-modal-diaload ';
 
 
         if (loadingTypeMap[loadingType]) {
@@ -91,40 +88,50 @@ class Loading extends Component {
         if (colorsMap[colors]) {
             clsObj[`${clsPrefix}-${loadingTypeMap[loadingType]}-${colorsMap[colors]}`] = true;
         }
+
         let classes = classnames(clsPrefix, clsObj);
+        let classBack = classnames(clsLoadBack, backColor)
 
         let dom = "";
-
+        console.log(describe);
         if (loadingType == "rotate") {
             dom = (
-                <div className={ classes }>
-                    <div></div>
+                <div className={ classBack }>
+                    <div className={ classes }>
+                        <div></div>
+                    </div>
+                    { describe &&
+                       <div className={ `${clsPrefix}-desc` }>
+                           { children }
+                        </div>
+                    }
+
                 </div>
-            );
-        } else if (loadingType == "line") {
-            dom = (
-                <div className={ classes }>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
+
             );
 
-        }
-        if (useModal) {
-            return (
-                <Modal {...others} contentStyle={ modalContentStyle } dialogClassName={modalDialogStyle}>
-                    { dom }
-                    <div className="u-loading-desc">
-                        <span> {children} </span>
+        } else if (loadingType == "line") {
+                dom = (
+                    <div className={ classBack  }>
+                        <div className={ classes }>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                        { describe &&
+                            <div className={ `${clsPrefix}-desc` }>
+                                { children }
+                            </div>
+                        }
                     </div>
-                </Modal>
-            )
+                );
         }
         return (
             <div>
                 { dom }
+
             </div>
         );
     }

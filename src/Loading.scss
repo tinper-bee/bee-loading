@@ -2,93 +2,133 @@
 @import "../node_modules/tinper-bee-core/scss/minxin-mixins";
 @import "../node_modules/bee-modal/src/Modal.scss";
 
+$loadprimary: rgb(63, 81, 181);
+$loadsuccess: #4caf50;
+$loadwarn: rgb(255, 152, 0);
+$lineanimating: (
+        1:line-scale 1s 0.1s infinite cubic-bezier(.2, .68, .18, 1.08),
+        2:line-scale 1s 0.2s infinite cubic-bezier(.2, .68, .18, 1.08),
+        3:line-scale 1s 0.3s infinite cubic-bezier(.2, .68, .18, 1.08),
+        4:line-scale 1s 0.4s infinite cubic-bezier(.2, .68, .18, 1.08),
+        5:line-scale 1s 0.5s infinite cubic-bezier(.2, .68, .18, 1.08)
+);
+$linebackcolor: (
+        1: #F44336,
+        2: #7ED321,
+        3: #0084FF,
+        4: #FF9800,
+        5: #D0021B
+);
 /**
-  * 模态加载
+  * 加载背景
+  */
+.u-loading-back{
+  position:relative;
+  text-align: center;
+  width:120px;
+  height:110px;
+  min-height: 40px;
+  margin:0 auto;
+  &.light{
+    background: #fff;
+  }
+  &.dark{
+    background: #000;
+  }
+}
+/**
+  * 文字
   */
 .u-loading-desc {
+  font-family: "Open Sans", "Helvetica Neue", Arial, "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   font-size: 16px;
   color: #cecece;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .u-modal-diaload {
   top: 30%;
-  left: 30%;
+  left: 45%;
   position: absolute;
-}
-
-/**
-  * size大小
-  */
-.u-loading.u-loading-rotate.u-loading-rotate-lg > div {
-  width: 60px;
-  height: 60px;
-}
-
-.u-loading.u-loading-rotate.u-loading-rotate-sm > div {
-  width: 25px;
-  height: 25px;
-}
-
-.u-loading.u-loading-line.u-loading-line-lg > div {
-  width: 12px;
-  height: 110px;
-}
-
-.u-loading.u-loading-line.u-loading-line-sm > div {
-  width: 4px;
-  height: 35px;
-}
-
-/**
-  * colors颜色
-  */
-.u-loading.u-loading-rotate.u-loading-rotate-primary > div {
-  border: 2px solid rgb(63, 81, 181);
-  border-bottom-color: transparent;
-}
-
-.u-loading.u-loading-rotate.u-loading-rotate-success > div {
-  border: 2px solid #4caf50;
-  border-bottom-color: transparent;
-}
-
-.u-loading.u-loading-rotate.u-loading-rotate-warning > div {
-  border: 2px solid rgb(255, 152, 0);
-  border-bottom-color: transparent;
-
-}
-
-.u-loading.u-loading-line.u-loading-line-primary > div {
-  background-color: rgb(63, 81, 181);
-
-}
-
-.u-loading.u-loading-line.u-loading-line-success > div {
-  background-color: #4caf50;
-}
-
-.u-loading.u-loading-line.u-loading-line-warning > div {
-  background-color: rgb(255, 152, 0);
+  background: transparent;
+  height: auto;
+  width: auto;
+  .u-modal-header {
+    margin-right: -15px;
+    border-bottom: 1px solid transparent;
+  }
+  .u-modal-header{
+    padding:0;
+  }
+  .u-modal-body{
+    padding:0;
+  }
 }
 
 /**
   * default样式 单个圆圈加载
   */
 
-.u-loading.u-loading-rotate > div {
-  //position: absolute;
-  border-radius: 100%;
-  margin: 2px;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  border: 2px solid #c2c3c5;
-  border-bottom-color: transparent;
-  height: 40px;
-  width: 40px;
-  background: transparent !important;
-  display: inline-block;
-  -webkit-animation: rotate 0.75s 0s linear infinite;
-  animation: rotate 0.75s 0s linear infinite;
+.u-loading {
+  &.u-loading-rotate {
+    & > div {
+      border-radius: 100%;
+      margin: 2px;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+      border: 2px solid #c2c3c5;
+      border-bottom-color: transparent;
+      height: 40px;
+      width: 40px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -22px;
+      margin-top: -22px;
+      background: transparent !important;
+      display: inline-block;
+      -webkit-animation: rotate 0.75s 0s linear infinite;
+      animation: rotate 0.75s 0s linear infinite;
+    }
+    &.u-loading-rotate-lg {
+      & > div {
+        margin-left: -30px;
+        margin-top: -30px;
+        width: 60px;
+        height: 60px;
+      }
+    }
+    &.u-loading-rotate-sm {
+      & > div {
+        margin-left: -15px;
+        margin-top: -15px;
+        width: 25px;
+        height: 25px;
+      }
+    }
+    &.u-loading-rotate-primary {
+      & > div {
+        border: 2px solid $loadprimary;
+        border-bottom-color: transparent;
+      }
+    }
+    &.u-loading-rotate-success {
+      & > div {
+        border: 2px solid $loadsuccess;
+        border-bottom-color: transparent;
+      }
+    }
+    &.u-loading-rotate-warning {
+      & > div {
+        border: 2px solid $loadwarn;
+        border-bottom-color: transparent;
+      }
+    }
+  }
+
 }
 
 @keyframes rotate {
@@ -108,63 +148,65 @@
   }
 }
 
-/**
-  * Lines
-  */
-.u-loading.u-loading-line > div:nth-child(1) {
-  -webkit-animation: line-scale 1s 0.1s infinite cubic-bezier(.2, .68, .18, 1.08);
-  animation: line-scale 1s 0.1s infinite cubic-bezier(.2, .68, .18, 1.08);
-}
+.u-loading {
+  &.u-loading-line {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -25px;
+    margin-top: -30px;
+    & > div {
+      background-color: #C2C3C5;
+      width: 6px;
+      height: 50px;
+      border-radius: 2px;
+      margin: 2px;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+      display: inline-block;
+    }
+    &.u-loading-line-lg {
+      margin-left: -30px;
+      margin-top: -50px;
+      & > div {
+        width: 8px;
+        height: 90px;
+      }
+    }
+    &.u-loading-line-sm {
+      margin-left: -20px;
+      margin-top: -22px;
+      & > div {
+        width: 4px;
+        height: 35px;
+      }
+    }
+    @each $index, $anima in $lineanimating {
+      div:nth-child( #{$index}  ) {
+        -webkit-animation: $anima;
+        animation: $anima;
+        background-color: map_get($linebackcolor, $index);
 
-.u-loading.u-loading-line > div:nth-child(2) {
-  -webkit-animation: line-scale 1s 0.2s infinite cubic-bezier(.2, .68, .18, 1.08);
-  animation: line-scale 1s 0.2s infinite cubic-bezier(.2, .68, .18, 1.08);
-}
+      }
+    }
 
-.u-loading.u-loading-line > div:nth-child(3) {
-  -webkit-animation: line-scale 1s 0.3s infinite cubic-bezier(.2, .68, .18, 1.08);
-  animation: line-scale 1s 0.3s infinite cubic-bezier(.2, .68, .18, 1.08);
-}
-
-.u-loading.u-loading-line > div:nth-child(4) {
-  -webkit-animation: line-scale 1s 0.4s infinite cubic-bezier(.2, .68, .18, 1.08);
-  animation: line-scale 1s 0.4s infinite cubic-bezier(.2, .68, .18, 1.08);
-}
-
-.u-loading.u-loading-line > div:nth-child(5) {
-  -webkit-animation: line-scale 1s 0.5s infinite cubic-bezier(.2, .68, .18, 1.08);
-  animation: line-scale 1s 0.5s infinite cubic-bezier(.2, .68, .18, 1.08);
-}
-
-.u-loading.u-loading-line > div {
- // position: absolute;
-  background-color: #C2C3C5;
-  width: 7px;
-  height: 50px;
-  border-radius: 2px;
-  margin: 2px;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  display: inline-block;
-}
-
-@-webkit-keyframes line-scale {
-  0% {
-    -webkit-transform: scaley(1);
-    transform: scaley(1);
+    &.u-loading-line-primary {
+      & > div {
+        background-color: $loadprimary;
+      }
+    }
+    &.u-loading-line-success {
+      & > div {
+        background-color: $loadsuccess;
+      }
+    }
+    &.u-loading-line-warning {
+      & > div {
+        background-color: $loadwarn;
+      }
+    }
   }
-
-  50% {
-    -webkit-transform: scaley(0.4);
-    transform: scaley(0.4);
-  }
-
-  100% {
-    -webkit-transform: scaley(1);
-    transform: scaley(1);
-  }
 }
-
 @keyframes line-scale {
   0% {
     -webkit-transform: scaley(1);
@@ -179,5 +221,6 @@
   100% {
     -webkit-transform: scaley(1);
     transform: scaley(1);
+
   }
 }
