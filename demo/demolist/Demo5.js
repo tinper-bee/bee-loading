@@ -51,13 +51,12 @@ class Demo5 extends Component {
                 <div className="dispalyDiv">
                     <Button colors="primary" size="lg" onClick={ ()=>{this.changeDropup("static");this.open();} }>带关闭按钮模态加载
                     </Button>
-                    <Modal   backdrop={ this.state.modalDropup } show={ this.state.showModal }  onHide={ this.close }
+                    <Modal   backdrop={ this.state.modalDropup }  show={ this.state.showModal }  onHide={ this.close }
                              contentStyle={ modalContentStyle } dialogClassName={modalDialogStyle}>
                         <Modal.Header closeButton >
                         </Modal.Header >
                         <Modal.Body >
-                            <Loading loadingType="line" >eeeee</Loading>
-
+                            <Loading loadingType="line" ></Loading>
                         </Modal.Body >
                     </Modal>
                 </div>
