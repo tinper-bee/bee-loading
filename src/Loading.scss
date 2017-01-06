@@ -1,32 +1,37 @@
 @import "../node_modules/tinper-bee-core/scss/minxin-variables";
 @import "../node_modules/tinper-bee-core/scss/minxin-mixins";
-@import "../node_modules/bee-modal/src/Modal.scss";
 
-$loadprimary: rgb(63, 81, 181);
-$loadsuccess: #4caf50;
-$loadwarn: rgb(255, 152, 0);
-$lineanimating: (
+
+$loading-loadprimary: rgb(63, 81, 181);
+$loading-loadsuccess: #4caf50;
+$loading-loadwarn: rgb(255, 152, 0);
+$loading-lineanimating: (
         1:line-scale 1s 0.1s infinite cubic-bezier(.2, .68, .18, 1.08),
         2:line-scale 1s 0.2s infinite cubic-bezier(.2, .68, .18, 1.08),
         3:line-scale 1s 0.3s infinite cubic-bezier(.2, .68, .18, 1.08),
         4:line-scale 1s 0.4s infinite cubic-bezier(.2, .68, .18, 1.08),
         5:line-scale 1s 0.5s infinite cubic-bezier(.2, .68, .18, 1.08)
 );
-$linebackcolor: (
+$loading-linebackcolor: (
         1: #F44336,
         2: #7ED321,
         3: #0084FF,
         4: #FF9800,
         5: #D0021B
 );
+$loading-back-width: 120px;
+$loading-back-height:110px;
+$loading-desc-font-size: 16px;
+$loading-desc-color: #cecece;
+
 /**
   * 加载背景
   */
 .u-loading-back{
   position:relative;
   text-align: center;
-  width:120px;
-  height:110px;
+  width:$loading-back-width;
+  height:$loading-back-height;
   min-height: 40px;
   margin:0 auto;
   &.light{
@@ -40,9 +45,8 @@ $linebackcolor: (
   * 文字
   */
 .u-loading-desc {
-  font-family: "Open Sans", "Helvetica Neue", Arial, "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-  font-size: 16px;
-  color: #cecece;
+  font-size: $loading-desc-font-size;
+  color: $loading-desc-color;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -111,19 +115,19 @@ $linebackcolor: (
     }
     &.u-loading-rotate-primary {
       & > div {
-        border: 2px solid $loadprimary;
+        border: 2px solid $loading-loadprimary;
         border-bottom-color: transparent;
       }
     }
     &.u-loading-rotate-success {
       & > div {
-        border: 2px solid $loadsuccess;
+        border: 2px solid $loading-loadsuccess;
         border-bottom-color: transparent;
       }
     }
     &.u-loading-rotate-warning {
       & > div {
-        border: 2px solid $loadwarn;
+        border: 2px solid $loading-loadwarn;
         border-bottom-color: transparent;
       }
     }
@@ -185,7 +189,7 @@ $linebackcolor: (
       div:nth-child( #{$index}  ) {
         -webkit-animation: $anima;
         animation: $anima;
-        background-color: map_get($linebackcolor, $index);
+        background-color: map_get($loading-linebackcolor, $index);
 
       }
     }

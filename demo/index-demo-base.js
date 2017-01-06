@@ -4,6 +4,7 @@ import { Panel } from 'bee-panel';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Button from 'bee-button';
+import Modal from 'bee-modal';
 import Loading from '../src';
 
 
@@ -38,7 +39,7 @@ class Demo extends Component {
             </Button>
         );
 
-        
+
         return (
             <Col md={12}>
                 <h3>{ title }</h3>
