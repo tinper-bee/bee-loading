@@ -23,6 +23,34 @@ $loading-back-width: 120px;
 $loading-back-height:110px;
 $loading-desc-font-size: 16px;
 $loading-desc-color: #cecece;
+$loading-rotate-bor:#c2c3c5;
+
+/*两种加载的尺寸 width height*/
+$loading-rotate-sm-size: 25px;
+$loading-rotate-size:40px;
+$loading-rotate-lg-size:60px;
+
+$loading-line-sm-width: 4px;
+$loading-line-sm-height:35px;
+$loading-line-width:6px;
+$loading-line-height:50px;
+$loading-line-lg-width:8px;
+$loading-line-lg-height:90px ;
+
+/*居中位置top left*/
+$loading-center-top:50%;
+$loading-center-left:50%;
+
+$loading-rotate-center-sm: -15px ;
+$loading-rotate-center:-22px;
+$loading-rotate-center-lg:-35px ;
+
+$loading-line-center-sm-top: -22px;
+$loading-line-center-sm-left:-20px;
+$loading-line-center-top:-30px;
+$loading-line-center-left:-25px;
+$loading-line-center-lg-top:-50px;
+$loading-line-center-lg-left:-30px;
 
 /**
   * 加载背景
@@ -32,7 +60,6 @@ $loading-desc-color: #cecece;
   text-align: center;
   width:$loading-back-width;
   height:$loading-back-height;
-  min-height: 40px;
   margin:0 auto;
   &.light{
     background: #fff;
@@ -45,32 +72,14 @@ $loading-desc-color: #cecece;
   * 文字
   */
 .u-loading-desc {
-  font-size: $loading-desc-font-size;
-  color: $loading-desc-color;
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
+  font-size: $loading-desc-font-size;
+  color: $loading-desc-color;
 }
 
-.u-modal-diaload {
-  top: 30%;
-  left: 45%;
-  position: absolute;
-  background: transparent;
-  height: auto;
-  width: auto;
-  .u-modal-header {
-    margin-right: -15px;
-    border-bottom: 1px solid transparent;
-  }
-  .u-modal-header{
-    padding:0;
-  }
-  .u-modal-body{
-    padding:0;
-  }
-}
 
 /**
   * default样式 单个圆圈加载
@@ -79,19 +88,19 @@ $loading-desc-color: #cecece;
 .u-loading {
   &.u-loading-rotate {
     & > div {
+      position: absolute;
       border-radius: 100%;
       margin: 2px;
       -webkit-animation-fill-mode: both;
       animation-fill-mode: both;
-      border: 2px solid #c2c3c5;
+      border: 2px solid $loading-rotate-bor;
       border-bottom-color: transparent;
-      height: 40px;
-      width: 40px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      margin-left: -22px;
-      margin-top: -22px;
+      width: $loading-rotate-size;
+      height: $loading-rotate-size;
+      top: $loading-center-top;
+      left: $loading-center-left;
+      margin-left: $loading-rotate-center;
+      margin-top: $loading-rotate-center;
       background: transparent !important;
       display: inline-block;
       -webkit-animation: rotate 0.75s 0s linear infinite;
@@ -99,18 +108,18 @@ $loading-desc-color: #cecece;
     }
     &.u-loading-rotate-lg {
       & > div {
-        margin-left: -30px;
-        margin-top: -30px;
-        width: 60px;
-        height: 60px;
+        margin-left: $loading-rotate-center-lg;
+        margin-top: $loading-rotate-center-lg;
+        width: $loading-rotate-lg-size;
+        height: $loading-rotate-lg-size;
       }
     }
     &.u-loading-rotate-sm {
       & > div {
-        margin-left: -15px;
-        margin-top: -15px;
-        width: 25px;
-        height: 25px;
+        margin-left:$loading-rotate-center-sm;
+        margin-top: $loading-rotate-center-sm;
+        width: $loading-rotate-sm-size;
+        height:$loading-rotate-sm-size;
       }
     }
     &.u-loading-rotate-primary {
@@ -155,14 +164,14 @@ $loading-desc-color: #cecece;
 .u-loading {
   &.u-loading-line {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -25px;
-    margin-top: -30px;
+    top:$loading-center-top;
+    left: $loading-center-left;
+    margin-top: $loading-line-center-top;
+    margin-left: $loading-line-center-left;
     & > div {
       background-color: #C2C3C5;
-      width: 6px;
-      height: 50px;
+      width: $loading-line-width;
+      height: $loading-line-height;
       border-radius: 2px;
       margin: 2px;
       -webkit-animation-fill-mode: both;
@@ -170,43 +179,42 @@ $loading-desc-color: #cecece;
       display: inline-block;
     }
     &.u-loading-line-lg {
-      margin-left: -30px;
-      margin-top: -50px;
+      margin-top: $loading-line-center-lg-top;
+      margin-left: $loading-line-center-lg-left;
       & > div {
-        width: 8px;
-        height: 90px;
+        width: $loading-line-lg-width;
+        height: $loading-line-lg-height;
       }
     }
     &.u-loading-line-sm {
-      margin-left: -20px;
-      margin-top: -22px;
+      margin-top: $loading-line-center-sm-top;
+      margin-left: $loading-line-center-sm-left;
       & > div {
-        width: 4px;
-        height: 35px;
+        width:$loading-line-sm-width;
+        height: $loading-line-sm-height;
       }
     }
-    @each $index, $anima in $lineanimating {
+    @each $index, $anima in $loading-lineanimating {
       div:nth-child( #{$index}  ) {
         -webkit-animation: $anima;
         animation: $anima;
         background-color: map_get($loading-linebackcolor, $index);
-
       }
     }
 
     &.u-loading-line-primary {
       & > div {
-        background-color: $loadprimary;
+        background-color: $loading-loadprimary;
       }
     }
     &.u-loading-line-success {
       & > div {
-        background-color: $loadsuccess;
+        background-color: $loading-loadsuccess;
       }
     }
     &.u-loading-line-warning {
       & > div {
-        background-color: $loadwarn;
+        background-color: $loading-loadwarn;
       }
     }
   }
