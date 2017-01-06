@@ -4,8 +4,6 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -15,10 +13,6 @@ var _classnames = require('classnames');
 var _classnames2 = _interopRequireDefault(_classnames);
 
 var _tinperBeeCore = require('tinper-bee-core');
-
-var _beeModal = require('bee-modal');
-
-var _beeModal2 = _interopRequireDefault(_beeModal);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -37,6 +31,7 @@ var propTypes = {
      * @title 默认的公共类׺
      */
     clsPrefix: _react.PropTypes.string,
+    clsLoadBack: _react.PropTypes.string,
     /**
      * @title 不同loading样式
      */
@@ -49,19 +44,23 @@ var propTypes = {
     /**
      * @title 不同颜色
      */
-    colors: _react.PropTypes.oneOf(['primary', 'success', 'warning']),
+    colors: _react.PropTypes.oneOf(['primary', 'success', 'warning', ""]),
     /**
-     * @title 模态加载
+     * @title 不同背景色
      */
-    useModal: _react.PropTypes.bool
-
+    backColor: _react.PropTypes.oneOf(['light', 'dark']),
+    /**
+     * @title 是否带有文字内容
+     */
+    describe: _react.PropTypes.bool
 };
 var defaultProps = {
     clsPrefix: 'u-loading',
+    clsLoadBack: 'u-loading-back',
     loadingType: 'rotate',
-    color: '',
-    useModal: false
-
+    colors: '',
+    backColor: 'light',
+    describe: false
 };
 
 var sizeMap = {
@@ -90,23 +89,16 @@ var Loading = function (_Component) {
     Loading.prototype.render = function render() {
         var _props = this.props,
             clsPrefix = _props.clsPrefix,
+            clsLoadBack = _props.clsLoadBack,
             loadingType = _props.loadingType,
             size = _props.size,
             colors = _props.colors,
+            backColor = _props.backColor,
+            describe = _props.describe,
             children = _props.children,
-            useModal = _props.useModal,
-            others = _objectWithoutProperties(_props, ['clsPrefix', 'loadingType', 'size', 'colors', 'children', 'useModal']);
+            others = _objectWithoutProperties(_props, ['clsPrefix', 'clsLoadBack', 'loadingType', 'size', 'colors', 'backColor', 'describe', 'children']);
 
         var clsObj = {};
-
-        var modalContentStyle = {
-            border: "none",
-            boxShadow: "none",
-            background: "transparent",
-            textAlign: "center"
-        };
-
-        var modalDialogStyle = ' u-modal-diaload ';
 
         if (loadingTypeMap[loadingType]) {
             clsObj[clsPrefix + '-' + loadingTypeMap[loadingType]] = true;
@@ -119,41 +111,43 @@ var Loading = function (_Component) {
         if (colorsMap[colors]) {
             clsObj[clsPrefix + '-' + loadingTypeMap[loadingType] + '-' + colorsMap[colors]] = true;
         }
+
         var classes = (0, _classnames2["default"])(clsPrefix, clsObj);
+        var classBack = (0, _classnames2["default"])(clsLoadBack, backColor);
 
         var dom = "";
-
         if (loadingType == "rotate") {
             dom = _react2["default"].createElement(
                 'div',
-                { className: classes },
-                _react2["default"].createElement('div', null)
+                { className: classBack },
+                _react2["default"].createElement(
+                    'div',
+                    { className: classes },
+                    _react2["default"].createElement('div', null)
+                ),
+                describe && _react2["default"].createElement(
+                    'div',
+                    { className: clsPrefix + '-desc' },
+                    children
+                )
             );
         } else if (loadingType == "line") {
             dom = _react2["default"].createElement(
                 'div',
-                { className: classes },
-                _react2["default"].createElement('div', null),
-                _react2["default"].createElement('div', null),
-                _react2["default"].createElement('div', null),
-                _react2["default"].createElement('div', null)
-            );
-        }
-        if (useModal) {
-            return _react2["default"].createElement(
-                _beeModal2["default"],
-                _extends({}, others, { contentStyle: modalContentStyle, dialogClassName: modalDialogStyle }),
-                dom,
+                { className: classBack },
                 _react2["default"].createElement(
                     'div',
-                    { className: 'u-loading-desc' },
-                    _react2["default"].createElement(
-                        'span',
-                        null,
-                        ' ',
-                        children,
-                        ' '
-                    )
+                    { className: classes },
+                    _react2["default"].createElement('div', null),
+                    _react2["default"].createElement('div', null),
+                    _react2["default"].createElement('div', null),
+                    _react2["default"].createElement('div', null),
+                    _react2["default"].createElement('div', null)
+                ),
+                describe && _react2["default"].createElement(
+                    'div',
+                    { className: clsPrefix + '-desc' },
+                    children
                 )
             );
         }
@@ -170,5 +164,6 @@ var Loading = function (_Component) {
 ;
 Loading.propTypes = propTypes;
 Loading.defaultProps = defaultProps;
+
 exports["default"] = Loading;
 module.exports = exports['default'];

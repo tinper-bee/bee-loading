@@ -1,36 +1,60 @@
-
 /**
  *
- * @title 不同颜色的加载
- * @description 通过`colors`属性控制加载颜色
+ * @title 模态加载
+ * @description 通过`useModal` `show`等属性显示模态加载
  *
  */
 
 class Demo3 extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            showModal: false,
+        };
+        this.close = this.close.bind(this);
+        this.open = this.open.bind(this);
 
-    render () {
+    }
+    open() {
+        this.setState({
+            showModal: true
+        });
+    }
+    close() {
+        this.setState(
+            {
+                showModal: false
+            })
+        ;
+    }
+    render() {
+
+        let modalContentStyle = {
+            border: "none",
+            boxShadow: "none",
+            background: "transparent",
+            textAlign: "center"
+        };
+
+        let modalDialogStyle = ' u-modal-diaload ';
+
+        let open = this.state.open;
         return (
-            <Row>
-                <Col sm={2} xs={4}>
-                    <Loading  colors="primary"/>
-                </Col>
-                <Col sm={2} xs={4}>
-                    <Loading  colors="success"/>
-                </Col>
-                <Col sm={2} xs={4}>
-                    <Loading  colors="warning"/>
-                </Col>
-                <Col sm={2} xs={4}>
-                    <Loading  loadingType="line" colors="primary"/>
-                </Col>
-                <Col sm={2} xs={4}>
-                    <Loading  loadingType="line" colors="success"/>
-                </Col>
-                <Col sm={2} xs={4}>
-                    <Loading  loadingType="line" colors="warning"/>
-                </Col>
-            </Row>
+            <div className="demoPadding">
+                <div className="dispalyDiv">
+                    <Button colors="primary" size="lg" onClick={ this.open }>带关闭按钮模态加载
+                    </Button>
+                    <Modal   backdrop="static"  show={ this.state.showModal }  onHide={ this.close }
+                             contentStyle={ modalContentStyle } dialogClassName={modalDialogStyle}>
+                        <Modal.Header closeButton >
+                        </Modal.Header >
+                        <Modal.Body >
+                            <Loading loadingType="line" ></Loading>
+                        </Modal.Body >
+                    </Modal>
+                </div>
+            </div>
+
         )
     }
 }
-

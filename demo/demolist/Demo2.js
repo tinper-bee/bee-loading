@@ -1,32 +1,25 @@
-
 /**
  *
- * @title 不同大小的加载
- * @description 通过`size`属性控制加载大小
+ * @title 带有文字描述和带有背景色
+ * @description
  *
  */
 
 class Demo2 extends Component {
-    render() {
+    render () {
         return (
             <Row>
                 <Col sm={2} xs={4}>
-                    <Loading   size="sm"/>
+                    <Loading colors="primary" describe>加载中...</Loading>
                 </Col>
                 <Col sm={2} xs={4}>
-                    <Loading   />
+                    <Loading colors="warning"  backColor="dark" describe>加载中...</Loading>
                 </Col>
                 <Col sm={2} xs={4}>
-                    <Loading   size="lg"/>
+                    <Loading describe loadingType="line">加载中...</Loading>
                 </Col>
                 <Col sm={2} xs={4}>
-                    <Loading  loadingType="line" size="sm"/>
-                </Col>
-                <Col sm={2} xs={4}>
-                    <Loading   loadingType="line" />
-                </Col>
-                <Col sm={2} xs={4}>
-                    <Loading  loadingType="line" size="lg"/>
+                    <Loading  loadingType="line"  backColor="dark"></Loading>
                 </Col>
             </Row>
         )

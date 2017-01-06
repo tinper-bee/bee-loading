@@ -21,7 +21,7 @@ const propTypes = {
     /**
      * @title 不同颜色
      */
-    colors: PropTypes.oneOf(['primary', 'success', 'warning']),
+    colors: PropTypes.oneOf(['primary', 'success', 'warning', ""]),
     /**
      * @title 不同背景色
      */
@@ -93,7 +93,6 @@ class Loading extends Component {
         let classBack = classnames(clsLoadBack, backColor)
 
         let dom = "";
-        console.log(describe);
         if (loadingType == "rotate") {
             dom = (
                 <div className={ classBack }>
@@ -139,4 +138,5 @@ class Loading extends Component {
 ;
 Loading.propTypes = propTypes;
 Loading.defaultProps = defaultProps;
+
 export default Loading;
