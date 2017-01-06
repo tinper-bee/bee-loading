@@ -15,3 +15,23 @@
   flex-direction: row;
   flex-wrap: wrap;
 }
+.u-modal-diaload {
+  top:50%;
+  left: 50%;
+  margin-top: -60px;
+  margin-left: -55px;
+  position: absolute;
+  background: transparent;
+  height: auto;
+  width: auto;
+  .u-modal-header {
+    margin-right: -15px;
+    border-bottom: 1px solid transparent;
+  }
+  .u-modal-header{
+    padding:0;
+  }
+  .u-modal-body{
+    padding:0;
+  }
+}
