@@ -33,13 +33,14 @@
     "pub": "bee-tools run pub"
   },
   "dependencies": {
+    "babel-runtime": "^6.20.0",
     "classnames": "^2.2.5",
-    "tinper-bee-core": "latest"
+    "tinper-bee-core": "^0.2.1"
   },
   "devDependencies": {
     "bee-button": "latest",
     "bee-layout": "latest",
-    "bee-modal": "latest",
+    "bee-modal": "^0.2.3",
     "bee-panel": "^0.2.2",
     "chai": "^3.5.0",
     "console-polyfill": "~0.2.1",
