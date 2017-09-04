@@ -5,6 +5,13 @@
  *
  */
 
+import { Con, Row, Col } from 'bee-layout';
+import { Panel } from 'bee-panel';
+import React, { Component } from 'react';
+import Button from 'bee-button';
+import Modal from 'bee-modal';
+import Loading from '../../src';
+
 class Demo3 extends Component {
     constructor(props){
         super(props);
@@ -58,3 +65,5 @@ class Demo3 extends Component {
         )
     }
 }
+
+export default Demo3;

@@ -5,6 +5,11 @@
  *
  */
 
+import { Con, Row, Col } from 'bee-layout';
+import { Panel } from 'bee-panel';
+import React, { Component } from 'react';
+import Loading from '../../src';
+
 class Demo2 extends Component {
     render () {
         return (
@@ -25,3 +30,5 @@ class Demo2 extends Component {
         )
     }
 }
+
+export default Demo2;
