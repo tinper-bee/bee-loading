@@ -8,18 +8,31 @@
 import { Con, Row, Col } from 'bee-layout';
 import { Panel } from 'bee-panel';
 import React, { Component } from 'react';
+import Button from 'bee-button'
 import Loading from '../../src';
 
+
 class Demo1 extends Component {
-    render () {
+  constructor(props) {
+      super(props);
+      this.state = {
+      }
+  }
+  createLoading = () => {
+    Loading.create();
+  }
+  destoryLoading = () => {
+    Loading.destroy();
+  }
+
+  render () {
         return (
           <Row>
-              <Col md={2} xs={5}>
-                  <Loading />
-              </Col>
-              <Col md={2} xs={5}>
-                  <Loading loadingType="line" />
-              </Col>
+            <Button
+                colors="info"
+                onClick={this.createLoading}>
+                create loading
+            </Button>
           </Row>
         )
     }

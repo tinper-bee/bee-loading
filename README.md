@@ -29,7 +29,8 @@ npm install --save bee-loading
 
 ```js
 import Loading from 'bee-loading';
-ReactDOM.render( <Loading size="lg"/>);
+
+Loading.create({loadingType:"line",content: 'loading',duration: 100});
 
 ```
 
@@ -50,10 +51,10 @@ import "./node_modules/bee-loading/build/Loding.css"
 |参数|说明|类型|默认值|
 |:--|:---:|:--:|---:|
 |loadingType|类型(`rotate` `line`)|string|''|
-|size|加载大小(`large` `medium` `small`)|string|medium|
-|colors|颜色(`primary` `success``warning`)|string|''|
-|backColor|背景颜色(`light` `dark`)|string|'light'|
-|describe|是否带有文字||boolean|false|
+|content|显示文字内容|obj|''|
+|duration|延长时间|number|4s|
+|create()|创建loading方法|func|-|
+|destroy()|销毁loading方法|func|-|
 
 #### 开发调试
 
