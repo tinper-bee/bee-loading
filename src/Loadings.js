@@ -1,8 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { findDOMNode } from 'react';
 import classnames from 'classnames';
 import Modal from 'bee-modal';
 import {componentOrElement} from 'tinper-bee-core';
+import PropTypes from 'prop-types';
 
 const propTypes = {
     /**

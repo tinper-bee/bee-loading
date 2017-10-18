@@ -18,6 +18,10 @@ var _beeModal2 = _interopRequireDefault(_beeModal);
 
 var _tinperBeeCore = require('tinper-bee-core');
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
@@ -34,29 +38,29 @@ var propTypes = {
     /**
      * @title 默认的公共类׺
      */
-    clsPrefix: _react.PropTypes.string,
-    clsLoadBack: _react.PropTypes.string,
+    clsPrefix: _propTypes2["default"].string,
+    clsLoadBack: _propTypes2["default"].string,
     /**
      * @title 不同loading样式
      */
-    loadingType: _react.PropTypes.oneOf(['rotate', 'line']),
+    loadingType: _propTypes2["default"].oneOf(['rotate', 'line']),
 
     /**
      * @title 不同尺寸
      */
-    size: _react.PropTypes.oneOf(['sm', 'lg']),
+    size: _propTypes2["default"].oneOf(['sm', 'lg']),
     /**
      * @title 不同颜色
      */
-    colors: _react.PropTypes.oneOf(['primary', 'success', 'warning', ""]),
+    colors: _propTypes2["default"].oneOf(['primary', 'success', 'warning', ""]),
     /**
      * @title 不同背景色
      */
-    backColor: _react.PropTypes.oneOf(['light', 'dark']),
+    backColor: _propTypes2["default"].oneOf(['light', 'dark']),
     /**
      * @title 是否带有文字内容
      */
-    describe: _react.PropTypes.bool
+    describe: _propTypes2["default"].bool
 };
 var defaultProps = {
     clsPrefix: 'u-loading',
