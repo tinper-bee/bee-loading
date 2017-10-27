@@ -1,9 +1,94 @@
 @import "../node_modules/tinper-bee-core/scss/minxin-variables";
 @import "../node_modules/tinper-bee-core/scss/minxin-mixins";
+@import "../node_modules/bee-table/src/Table";
 
 
+.addLoading{
+  position: relative;
+}
+.loading_show{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #000;
+    opacity: 0.6;
+   
+    & .u-loading-rotate {
+          position: absolute;
+          border-radius: 100%;
+          margin: 2px;
+          -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+          border: 2px solid $loading-rotate-bor;
+          border-bottom-color: transparent;
+          width: $loading-rotate-size;
+          height: $loading-rotate-size;
+          top: $loading-center-top;
+          left: $loading-center-left;
+          margin-left: $loading-rotate-center;
+          margin-top: $loading-rotate-center;
+          background: transparent !important;
+          display: inline-block;
+          -webkit-animation: rotate 0.75s 0s linear infinite;
+          animation: rotate 0.75s 0s linear infinite;
+    }
+    & .u-loading-line {
+        position: absolute;
+        top:$loading-center-top;
+        left: $loading-center-left;
+        margin-top: $loading-line-center-top;
+        margin-left: $loading-line-center-left;
+        & > div {
+          background-color: #C2C3C5;
+          width: $loading-line-width;
+          height: $loading-line-height;
+          border-radius: 2px;
+          margin: 2px;
+          -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+          display: inline-block;
+        }
+        &.u-loading-line-lg {
+          margin-top: $loading-line-center-lg-top;
+          margin-left: $loading-line-center-lg-left;
+          & > div {
+            width: $loading-line-lg-width;
+            height: $loading-line-lg-height;
+          }
+        }
+        &.u-loading-line-sm {
+          margin-top: $loading-line-center-sm-top;
+          margin-left: $loading-line-center-sm-left;
+          & > div {
+            width:$loading-line-sm-width;
+            height: $loading-line-sm-height;
+          }
+        }
+        @each $index, $anima in $loading-lineanimating {
+          div:nth-child( #{$index}  ) {
+            -webkit-animation: $anima;
+            animation: $anima;
+            background-color: map_get($loading-linebackcolor, $index);
+          }
+        }
 
-
+        &.u-loading-line-primary {
+          & > div {
+            background-color: $loading-loadprimary;
+          }
+        }
+        &.u-loading-line-success {
+          & > div {
+            background-color: $loading-loadsuccess;
+          }
+        }
+        &.u-loading-line-warning {
+          & > div {
+            background-color: $loading-loadwarn;
+          }
+        }
+      }
+}
 /**
   * 加载背景
   */
@@ -16,7 +101,7 @@
   height:$loading-back-height;
   margin:0 auto;
   &.light{
-    background: #fff;
+    background: #fff; 
   }
   &.dark{
     background: #000;

@@ -1,7 +1,7 @@
 /**
  *
  * @title 默认加载
- * @description 基础加载,两种形状，loadingType:line,条形
+ * @description 基础加载,两种形状，loadingType:line,条形,添加背景,文字提示
  *
  */
 
@@ -13,11 +13,13 @@ import Loading from '../../src';
 
 const defaultProps = {
   obj: {
-    loadingType: "line"
+    loadingType: "line",
+    content: "loading...",
+    backColor: "light"
   }
 };
 
-class Demo2 extends Component {
+class Demo4 extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -57,6 +59,6 @@ class Demo2 extends Component {
   }
 }
 
-Demo2.defaultProps = defaultProps;
+Demo4.defaultProps = defaultProps;
 
-export default Demo2;
+export default Demo4;
