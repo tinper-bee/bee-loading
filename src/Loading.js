@@ -1,163 +1,160 @@
-import React from 'react';
-import Notification from './Notification';
+import React, { Component } from 'react';
+import { findDOMNode } from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import Portal from 'bee-overlay/build/Portal';
 
-let messageInstance;
-let loadingType = 'line';
-let clsPrefix = 'u-loading';
-let clsLoadBack = 'u-loading-back';
+const propTypes = {
+    /**
+     * @title 默认的公共类׺
+     */
+    clsPrefix: PropTypes.string,
+    clsLoadBack: PropTypes.string,
+    /**
+     * @title 不同loading样式
+     */
+    loadingType: PropTypes.oneOf(['rotate', 'line']),
 
-
-const loadingTypeMap = {
-    rotate: 'rotate',
-    line: 'line'
+    /**
+     * @title 不同尺寸
+     */
+    size: PropTypes.oneOf(['sm', 'lg']),
+    /**
+     * @title 不同颜色
+     */
+    color: PropTypes.oneOf(['primary', 'success', 'warning', ""]),
+    /**
+     * @title 不同背景色
+     */
+    backColor: PropTypes.oneOf(['light', 'dark']),
+    /**
+     * @title 是否带有文字内容
+     */
+    describe:PropTypes.bool
+};
+const defaultProps = {
+    clsPrefix: 'u-loading',
+    clsLoadBack: 'u-loading-back',
+    loadingType: 'rotate',
+    color: '',
+    backColor: 'light',
+    describe:false,
+    showBackDrop: true
 };
 
-/**
- * 初始化实例
- */
-function getMessageInstance() {
-    messageInstance = messageInstance || Notification.newInstance({
-        clsPrefix,
-        position: ''
-    });
-    return messageInstance;
-}
-
-/**
- * 提供默认的rotate和line的俩种显示
- * @param {*} content 
- * @param {*} duration 
- * @param {*} backColor 
- * @param {*} loadingType 
- * @param {*} loading_show 
- */
-function notice(content, duration, backColor, loadingType, loading_show) {
-    let instance = getMessageInstance();
-
-    let clsObj = {
-        "u-load-img": true
+const sizeMap = {
+        sm: 'sm',
+        lg: 'lg'
+    },
+    colorsMap = {
+        primary: 'primary',
+        success: 'success',
+        warning: 'warning'
+    },
+    loadingTypeMap = {
+        rotate: 'rotate',
+        line: 'line'
     };
 
-    if (loadingTypeMap[loadingType]) {
-        clsObj[`${clsPrefix}-${loadingTypeMap[loadingType]}`] = true;
+class Loading extends Component {
+    constructor(props) {
+        super(props);
+
     }
+    render() {
+        const {
+            clsPrefix,
+            clsLoadBack,
+            loadingType,
+            size,
+            color,
+            backColor,
+            describe,
+            show,
+            showBackDrop,
+            container,
+            children,
+            ...others
+        } = this.props;
+
+        let clsObj = {};
+
+        if(!show) return null;
 
 
-    let classes = classnames(clsObj);
-    let classBack = classnames(clsLoadBack, backColor)
-
-    let dom = "";
-    if (loadingType == "rotate") {
-        dom = (
-            <div className={classBack}>
-                <div className={classes}>
-                    <div></div>
-                </div>
-                {content &&
-                    <div className={`${clsPrefix}-desc`}>
-                        {content}
-                    </div>
-                }
-
-            </div>
-
-        );
-
-    } else if (loadingType == "line") {
-        dom = (
-
-            <div className={classBack}>
-                <div className={classes}>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                {content &&
-                    <div className={`${clsPrefix}-desc`}>
-                        {content}
-                    </div>
-                }
-            </div>
-
-        );
-    }
-    /**
-     * 调用实例里的notice方法
-     */
-    instance.notice({
-        duration,
-        backColor,
-        loadingType,
-        content: dom,
-        loading_show
-
-    });
-    return (function () {
-        return function () {
-            instance.removeNotice();
-        };
-    }());
-}
-
-export default {
-    /**
-     * 创建loading对象，传入对象
-     * @param {*} obj 
-     */
-    create(obj) {
-        if (!obj) obj = {
-            loadingType: "line"
-        };
-        let content = obj.content || '';
-        let duration = obj.duration || 10;
-        let backColor = obj.backColor || "";
-        let loadingType = obj.loadingType || "";
-        let loading_show = obj.loading_show || "";
-        return notice(content, duration, backColor, loadingType, loading_show);
-    },
-    /**
-     * 销毁loading对象
-     * @param {*} loading_flag 
-     */
-    destroy(loading_flag) {
-
-        const addloading = document.getElementsByClassName("addLoading");
-        if (messageInstance) {
-            messageInstance.destroy();
-            messageInstance = null;
-            if (addloading.length > 0) {
-                for (var i = 0; i < addloading.length; i++) {
-                    if (addloading[i] && addloading[i].hasChildNodes("loading_show")) {
-                        let loading_show = document.getElementsByClassName("loading_show");
-                        if (addloading[i].getAttribute("class").indexOf(loading_flag) != -1) {
-                            addloading[i].removeChild(loading_show[i])
-                            //移除掉loading_flag的loading包含addLoading，class类
-                            //var reg = new RegExp('(\\s|^)' + "addLoading" + '(\\s|$)');
-                            //addloading[i].className = addloading[i].className.replace(reg, ' ');
-
-                        }
 
 
-                    }
-                }
-            }
+
+            clsObj[`${clsPrefix}-${loadingType}`] = true;
 
 
-        } else if (addloading.length > 0) {
-            for (var i = 0; i < addloading.length; i++) {
-                if (addloading[i] && addloading[i].hasChildNodes("loading_show")) {
-                    let loading_show = document.getElementsByClassName("loading_show");
-                    if (addloading[i].getAttribute("class").indexOf(loading_flag) != -1) {
-                        addloading[i].removeChild(loading_show[0])
-                        //移除掉loading_flag的loading包含addLoading，class类
-                        //var reg = new RegExp('(\\s|^)' + "addLoading" + '(\\s|$)');
-                        //addloading[i].className = addloading[i].className.replace(reg, ' ');
-                    }
-                }
-            }
+        if (sizeMap[size]) {
+            clsObj[`${clsPrefix}-${loadingType}-${sizeMap[size]}`] = true;
         }
+
+        if (colorsMap[color]) {
+            clsObj[`${clsPrefix}-${loadingType}-${colorsMap[color]}`] = true;
+        }
+
+        let classes = classnames(clsPrefix, clsObj);
+
+        let dom = "";
+        if (loadingType === "rotate") {
+            dom = (
+                <div>
+                    <div className={ classes }>
+                        <div></div>
+                    </div>
+                    { describe &&
+                    <div className={ `${clsPrefix}-desc` }>
+                        { children }
+                    </div>
+                    }
+
+                </div>
+
+            );
+
+        } else if (loadingType === "line") {
+            dom = (
+                <div>
+                    <div className={ classes }>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    { describe &&
+                    <div className={ `${clsPrefix}-desc` }>
+                        { children }
+                    </div>
+                    }
+                </div>
+            );
+        }
+
+        if(showBackDrop){
+            dom = (
+                <div className={`${clsPrefix}-backdrop`}>
+                    { dom }
+                </div>
+            )
+        }
+        //console.log(container);
+
+        return (
+            <Portal
+                container={container}
+            >
+                { dom }
+
+            </Portal>
+        );
     }
-};
+}
+;
+Loading.propTypes = propTypes;
+Loading.defaultProps = defaultProps;
+
+export default Loading;

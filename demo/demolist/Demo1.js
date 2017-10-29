@@ -5,58 +5,69 @@
  *
  */
 
-import { Con, Row, Col } from 'bee-layout';
-import { Panel } from 'bee-panel';
 import React, { Component } from 'react';
-import Button from 'bee-button'
 import Loading from '../../src';
-
-const defaultProps = {
-  obj: {
-    loadingType: "rotate"
-  }
-};
+import Button from 'bee-button';
 
 class Demo1 extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      showRotate: false,
+        showLine: false
     }
   }
-  createLoading = () => {
-    let obj = this.props.obj;
-    Loading.create(obj);
+
+  handleShow = () => {
+      this.setState({
+          showRotate: true
+      })
+      setTimeout(() => {
+          this.setState({
+              showRotate: false
+          })
+      }, 5000)
+
   }
-  destoryLoading = () => {
-    Loading.destroy();
-  }
+
+    handleShowLine = () => {
+        this.setState({
+            showLine: true
+        })
+        setTimeout(() => {
+            this.setState({
+                showLine: false
+            })
+        }, 5000)
+
+    }
 
   render() {
-    let style = { "zIndex": 99999 };
-
     return (
-      <Row>
-        <Col md={2} sm={2}>
-          <Button
-            colors="info"
-            onClick={this.createLoading}>
-            create loading
-          </Button>
-        </Col>
-
-        <Col md={2} sm={2} style={style}>
-          <Button
-            colors="info"
-            onClick={this.destoryLoading}>
-            delete loading
-          </Button>
-        </Col>
-
-      </Row>
+      <div>
+        <Button
+            colors="primary"
+            onClick={this.handleShow}>
+          点击显示默认loading
+        </Button>
+        <Loading
+            showBackDrop={true}
+            show={this.state.showRotate}
+        />
+        <Button
+            colors="primary"
+            style={{ marginLeft: 50 }}
+            onClick={this.handleShowLine}>
+          点击显示line loading
+        </Button>
+        <Loading
+            showBackDrop={true}
+            loadingType="line"
+            show={this.state.showLine}
+        />
+      </div>
     )
   }
 }
-
-Demo1.defaultProps = defaultProps;
 
 export default Demo1;
