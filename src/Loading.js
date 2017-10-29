@@ -23,22 +23,13 @@ const propTypes = {
      * @title 不同颜色
      */
     color: PropTypes.oneOf(['primary', 'success', 'warning', ""]),
-    /**
-     * @title 不同背景色
-     */
-    backColor: PropTypes.oneOf(['light', 'dark']),
-    /**
-     * @title 是否带有文字内容
-     */
-    describe:PropTypes.bool
 };
+
 const defaultProps = {
     clsPrefix: 'u-loading',
     clsLoadBack: 'u-loading-back',
     loadingType: 'rotate',
     color: '',
-    backColor: 'light',
-    describe:false,
     showBackDrop: true
 };
 
@@ -64,12 +55,9 @@ class Loading extends Component {
     render() {
         const {
             clsPrefix,
-            clsLoadBack,
             loadingType,
             size,
             color,
-            backColor,
-            describe,
             show,
             showBackDrop,
             container,
@@ -105,10 +93,13 @@ class Loading extends Component {
                     <div className={ classes }>
                         <div></div>
                     </div>
-                    { describe &&
-                    <div className={ `${clsPrefix}-desc` }>
-                        { children }
-                    </div>
+                    {
+                        children && (
+                            <div className={ `${clsPrefix}-desc` }>
+                                { children }
+                            </div>
+                        )
+
                     }
 
                 </div>
@@ -125,10 +116,13 @@ class Loading extends Component {
                         <div></div>
                         <div></div>
                     </div>
-                    { describe &&
-                    <div className={ `${clsPrefix}-desc` }>
-                        { children }
-                    </div>
+                    {
+                        children && (
+                            <div className={ `${clsPrefix}-desc` }>
+                                { children }
+                            </div>
+                        )
+
                     }
                 </div>
             );

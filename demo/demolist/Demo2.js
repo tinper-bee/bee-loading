@@ -1,6 +1,6 @@
 /**
  *
- * @title 渲染到容器中
+ * @title 将Loading渲染到容器中
  * @description 通过设置`container`属性，来控制loading渲染位置
  *
  */

@@ -1,146 +1,178 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _beeNotification = require('bee-notification');
+var _propTypes = require('prop-types');
 
-var _beeNotification2 = _interopRequireDefault(_beeNotification);
+var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
+var _Portal = require('bee-overlay/build/Portal');
+
+var _Portal2 = _interopRequireDefault(_Portal);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var messageInstance = void 0;
-var loadingType = 'rotate';
-var clsPrefix = 'u-loading';
-var clsLoadBack = 'u-loading-back';
+function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
 
-var noop = function noop() {};
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-var loadingTypeMap = {
-  rotate: 'rotate',
-  line: 'line'
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
+
+var propTypes = {
+    /**
+     * @title 默认的公共类׺
+     */
+    clsPrefix: _propTypes2["default"].string,
+    clsLoadBack: _propTypes2["default"].string,
+    /**
+     * @title 不同loading样式
+     */
+    loadingType: _propTypes2["default"].oneOf(['rotate', 'line']),
+
+    /**
+     * @title 不同尺寸
+     */
+    size: _propTypes2["default"].oneOf(['sm', 'lg']),
+    /**
+     * @title 不同颜色
+     */
+    color: _propTypes2["default"].oneOf(['primary', 'success', 'warning', ""])
 };
 
-function getMessageInstance() {
-  messageInstance = messageInstance || _beeNotification2["default"].newInstance({
-    clsPrefix: clsPrefix,
-    position: ''
-  });
-  return messageInstance;
-}
+var defaultProps = {
+    clsPrefix: 'u-loading',
+    clsLoadBack: 'u-loading-back',
+    loadingType: 'rotate',
+    color: '',
+    showBackDrop: true
+};
 
-function notice(content, duration, backColor, loadingType) {
+var sizeMap = {
+    sm: 'sm',
+    lg: 'lg'
+},
+    colorsMap = {
+    primary: 'primary',
+    success: 'success',
+    warning: 'warning'
+},
+    loadingTypeMap = {
+    rotate: 'rotate',
+    line: 'line'
+};
 
-  var instance = getMessageInstance();
+var Loading = function (_Component) {
+    _inherits(Loading, _Component);
 
-  var clsObj = {
-    "u-load-img": true
-  };
+    function Loading(props) {
+        _classCallCheck(this, Loading);
 
-  if (loadingTypeMap[loadingType]) {
-    clsObj[clsPrefix + '-' + loadingTypeMap[loadingType]] = true;
-  }
+        return _possibleConstructorReturn(this, _Component.call(this, props));
+    }
 
-  var classes = (0, _classnames2["default"])(clsObj);
-  var classBack = (0, _classnames2["default"])(clsLoadBack, backColor);
+    Loading.prototype.render = function render() {
+        var _props = this.props,
+            clsPrefix = _props.clsPrefix,
+            loadingType = _props.loadingType,
+            size = _props.size,
+            color = _props.color,
+            show = _props.show,
+            showBackDrop = _props.showBackDrop,
+            container = _props.container,
+            children = _props.children,
+            others = _objectWithoutProperties(_props, ['clsPrefix', 'loadingType', 'size', 'color', 'show', 'showBackDrop', 'container', 'children']);
 
-  var dom = "";
-  if (loadingType == "rotate") {
-    dom = _react2["default"].createElement(
-      'div',
-      { className: classBack },
-      _react2["default"].createElement(
-        'div',
-        { className: classes },
-        _react2["default"].createElement('div', null)
-      ),
-      content && _react2["default"].createElement(
-        'div',
-        { className: clsPrefix + '-desc' },
-        content
-      )
-    );
-  } else if (loadingType == "line") {
-    dom = _react2["default"].createElement(
-      'div',
-      { className: classBack },
-      _react2["default"].createElement(
-        'div',
-        { className: classes },
-        _react2["default"].createElement('div', null),
-        _react2["default"].createElement('div', null),
-        _react2["default"].createElement('div', null),
-        _react2["default"].createElement('div', null),
-        _react2["default"].createElement('div', null)
-      ),
-      content && _react2["default"].createElement(
-        'div',
-        { className: clsPrefix + '-desc' },
-        content
-      )
-    );
-  }
+        var clsObj = {};
 
-  instance.notice({
-    duration: duration,
-    backColor: backColor,
-    loadingType: loadingType,
-    content: dom
+        if (!show) return null;
 
-  });
-  return function () {
+        clsObj[clsPrefix + '-' + loadingType] = true;
 
-    return function () {
-      instance.removeNotice();
+        if (sizeMap[size]) {
+            clsObj[clsPrefix + '-' + loadingType + '-' + sizeMap[size]] = true;
+        }
+
+        if (colorsMap[color]) {
+            clsObj[clsPrefix + '-' + loadingType + '-' + colorsMap[color]] = true;
+        }
+
+        var classes = (0, _classnames2["default"])(clsPrefix, clsObj);
+
+        var dom = "";
+        if (loadingType === "rotate") {
+            dom = _react2["default"].createElement(
+                'div',
+                null,
+                _react2["default"].createElement(
+                    'div',
+                    { className: classes },
+                    _react2["default"].createElement('div', null)
+                ),
+                children && _react2["default"].createElement(
+                    'div',
+                    { className: clsPrefix + '-desc' },
+                    children
+                )
+            );
+        } else if (loadingType === "line") {
+            dom = _react2["default"].createElement(
+                'div',
+                null,
+                _react2["default"].createElement(
+                    'div',
+                    { className: classes },
+                    _react2["default"].createElement('div', null),
+                    _react2["default"].createElement('div', null),
+                    _react2["default"].createElement('div', null),
+                    _react2["default"].createElement('div', null),
+                    _react2["default"].createElement('div', null)
+                ),
+                children && _react2["default"].createElement(
+                    'div',
+                    { className: clsPrefix + '-desc' },
+                    children
+                )
+            );
+        }
+
+        if (showBackDrop) {
+            dom = _react2["default"].createElement(
+                'div',
+                { className: clsPrefix + '-backdrop' },
+                dom
+            );
+        }
+        //console.log(container);
+
+        return _react2["default"].createElement(
+            _Portal2["default"],
+            {
+                container: container
+            },
+            dom
+        );
     };
-  }();
-}
 
-exports["default"] = {
-  create: function create(obj) {
-    if (!obj) obj = {};
-    var content = obj.content || '';
-    var duration = _typeof(obj.duration) == undefined ? defaultDuration : obj.duration;
-    var backColor = obj.backColor || "light";
-    var loadingType = obj.loadingType || "rotate";
-    return notice(content, duration, backColor, loadingType);
-  },
-  config: function config(options) {
-    if (options.top !== undefined) {
-      defaultTop = options.top;
-    }
-    if (options.duration !== undefined) {
-      defaultDuration = options.duration;
-    }
-    if (options.clsPrefix !== undefined) {
-      clsPrefix = options.clsPrefix;
-    }
-    if (options.defaultBottom !== undefined) {
-      defaultBottom = options.defaultBottom;
-    }
-    if (options.bottom !== undefined) {
-      bottom = options.bottom;
-    }
-    if (options.width !== undefined) {
-      bottom = options.width;
-    }
-  },
-  destroy: function destroy() {
-    if (messageInstance) {
-      messageInstance.destroy();
-      messageInstance = null;
-    }
-  }
-};
+    return Loading;
+}(_react.Component);
+
+;
+Loading.propTypes = propTypes;
+Loading.defaultProps = defaultProps;
+
+exports["default"] = Loading;
 module.exports = exports['default'];

@@ -11,6 +11,5 @@
 |loadingType|类型(`rotate` `line`)|string|rotate|
 |size|加载大小(`large` `medium` `small`)|string|medium|
 |color|颜色(`primary` `success``warning`)|string|''|
-|describe|是否带有文字||boolean|false|
 |container|渲染到的容器|node|body|
 |showBackDrop|是否显示遮罩|boolean|true|

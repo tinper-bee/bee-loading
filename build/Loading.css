@@ -4,50 +4,28 @@
 /**
   * 加载背景
   */
-.u-loading-back {
-  text-align: center;
-  position: absolute;
-  left: 45%;
-  top: 45%;
-  width: 120px;
-  height: 110px;
-  margin: 0 auto; }
-  .u-loading-back.light {
-    background: #fff; }
-  .u-loading-back.dark {
-    background: #000; }
-
 /**
   * 文字
   */
 .u-loading-desc {
   position: absolute;
-  bottom: 5px;
+  bottom: 0;
   left: 0;
   right: 0;
   font-size: 16px;
-  color: #000; }
+  color: #fff;
+  text-align: center; }
 
 /**
   * default样式 单个圆圈加载
   */
-.u-loading-notice {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1600;
-  background-color: #000;
-  opacity: 0.6; }
-
-.u-load-img.u-loading-rotate > div {
+.u-loading.u-loading-rotate > div {
   position: absolute;
   border-radius: 100%;
   margin: 2px;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
-  border: 2px solid #c2c3c5;
+  border: 2px solid #0084ff;
   border-bottom-color: transparent;
   width: 40px;
   height: 40px;
@@ -60,29 +38,40 @@
   -webkit-animation: rotate 0.75s 0s linear infinite;
   animation: rotate 0.75s 0s linear infinite; }
 
-.u-load-img.u-loading-rotate.u-loading-rotate-lg > div {
+.u-loading.u-loading-rotate.u-loading-rotate-lg > div {
   margin-left: -35px;
   margin-top: -35px;
   width: 60px;
   height: 60px; }
 
-.u-load-img.u-loading-rotate.u-loading-rotate-sm > div {
+.u-loading.u-loading-rotate.u-loading-rotate-sm > div {
   margin-left: -15px;
   margin-top: -15px;
   width: 25px;
   height: 25px; }
 
-.u-load-img.u-loading-rotate.u-loading-rotate-primary > div {
+.u-loading.u-loading-rotate.u-loading-rotate-primary > div {
   border: 2px solid #3f51b5;
   border-bottom-color: transparent; }
 
-.u-load-img.u-loading-rotate.u-loading-rotate-success > div {
+.u-loading.u-loading-rotate.u-loading-rotate-success > div {
   border: 2px solid #4caf50;
   border-bottom-color: transparent; }
 
-.u-load-img.u-loading-rotate.u-loading-rotate-warning > div {
+.u-loading.u-loading-rotate.u-loading-rotate-warning > div {
   border: 2px solid #ff9800;
   border-bottom-color: transparent; }
+
+.u-loading-backdrop {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1600;
+  opacity: .7;
+  filter: blur(0.5px);
+  background-color: #fff; }
 
 @keyframes rotate {
   0% {
@@ -95,13 +84,13 @@
     -webkit-transform: rotate(360deg) scale(1);
     transform: rotate(360deg) scale(1); } }
 
-.u-load-img.u-loading-line {
+.u-loading.u-loading-line {
   position: absolute;
   top: 50%;
   left: 50%;
   margin-top: -30px;
   margin-left: -25px; }
-  .u-load-img.u-loading-line > div {
+  .u-loading.u-loading-line > div {
     background-color: #C2C3C5;
     width: 6px;
     height: 50px;
@@ -110,43 +99,43 @@
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
     display: inline-block; }
-  .u-load-img.u-loading-line.u-loading-line-lg {
+  .u-loading.u-loading-line.u-loading-line-lg {
     margin-top: -50px;
     margin-left: -30px; }
-    .u-load-img.u-loading-line.u-loading-line-lg > div {
+    .u-loading.u-loading-line.u-loading-line-lg > div {
       width: 8px;
       height: 90px; }
-  .u-load-img.u-loading-line.u-loading-line-sm {
+  .u-loading.u-loading-line.u-loading-line-sm {
     margin-top: -22px;
     margin-left: -20px; }
-    .u-load-img.u-loading-line.u-loading-line-sm > div {
+    .u-loading.u-loading-line.u-loading-line-sm > div {
       width: 4px;
       height: 35px; }
-  .u-load-img.u-loading-line div:nth-child(1) {
+  .u-loading.u-loading-line div:nth-child(1) {
     -webkit-animation: line-scale 1s 0.1s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
     animation: line-scale 1s 0.1s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
     background-color: #F44336; }
-  .u-load-img.u-loading-line div:nth-child(2) {
+  .u-loading.u-loading-line div:nth-child(2) {
     -webkit-animation: line-scale 1s 0.2s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
     animation: line-scale 1s 0.2s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
     background-color: #7ED321; }
-  .u-load-img.u-loading-line div:nth-child(3) {
+  .u-loading.u-loading-line div:nth-child(3) {
     -webkit-animation: line-scale 1s 0.3s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
     animation: line-scale 1s 0.3s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
     background-color: #0084FF; }
-  .u-load-img.u-loading-line div:nth-child(4) {
+  .u-loading.u-loading-line div:nth-child(4) {
     -webkit-animation: line-scale 1s 0.4s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
     animation: line-scale 1s 0.4s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
     background-color: #FF9800; }
-  .u-load-img.u-loading-line div:nth-child(5) {
+  .u-loading.u-loading-line div:nth-child(5) {
     -webkit-animation: line-scale 1s 0.5s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
     animation: line-scale 1s 0.5s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
     background-color: #D0021B; }
-  .u-load-img.u-loading-line.u-loading-line-primary > div {
+  .u-loading.u-loading-line.u-loading-line-primary > div {
     background-color: #3f51b5; }
-  .u-load-img.u-loading-line.u-loading-line-success > div {
+  .u-loading.u-loading-line.u-loading-line-success > div {
     background-color: #4caf50; }
-  .u-load-img.u-loading-line.u-loading-line-warning > div {
+  .u-loading.u-loading-line.u-loading-line-warning > div {
     background-color: #ff9800; }
 
 @keyframes line-scale {

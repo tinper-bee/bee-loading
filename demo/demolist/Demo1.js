@@ -1,7 +1,7 @@
 /**
  *
- * @title 默认加载
- * @description 基础加载,两种形状，loadingType:rotate,圆形
+ * @title 基础Loading
+ * @description 设置`loadingType`来修改Loading样式。默认是'rotate'。
  *
  */
 
