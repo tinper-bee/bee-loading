@@ -29,7 +29,7 @@
   left: 0;
   right: 0;
   font-size: $loading-desc-font-size;
-  color: #fff;
+  color: #000;
   text-align: center;
 }
 
@@ -107,6 +107,9 @@
   opacity: .7;
   filter: blur(.5px);
   background-color: #fff;
+  &.full-screen{
+    position: fixed;
+  }
 }
 
 @keyframes rotate {

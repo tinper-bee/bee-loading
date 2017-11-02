@@ -23,6 +23,10 @@ const propTypes = {
      * @title 不同颜色
      */
     color: PropTypes.oneOf(['primary', 'success', 'warning', ""]),
+    /**
+     * @title 是否全屏loading
+     */
+    fullScreen: PropTypes.bool
 };
 
 const defaultProps = {
@@ -30,7 +34,8 @@ const defaultProps = {
     clsLoadBack: 'u-loading-back',
     loadingType: 'rotate',
     color: '',
-    showBackDrop: true
+    showBackDrop: true,
+    fullScreen: false
 };
 
 const sizeMap = {
@@ -41,10 +46,6 @@ const sizeMap = {
         primary: 'primary',
         success: 'success',
         warning: 'warning'
-    },
-    loadingTypeMap = {
-        rotate: 'rotate',
-        line: 'line'
     };
 
 class Loading extends Component {
@@ -62,6 +63,7 @@ class Loading extends Component {
             showBackDrop,
             container,
             children,
+            fullScreen,
             ...others
         } = this.props;
 
@@ -128,9 +130,14 @@ class Loading extends Component {
             );
         }
 
+        let backClassObj = {
+            [`${clsPrefix}-backdrop`]: true,
+            ['full-screen']: fullScreen
+        }
+
         if(showBackDrop){
             dom = (
-                <div className={`${clsPrefix}-backdrop`}>
+                <div className={classnames(backClassObj)}>
                     { dom }
                 </div>
             )
@@ -142,7 +149,6 @@ class Loading extends Component {
                 container={container}
             >
                 { dom }
-
             </Portal>
         );
     }

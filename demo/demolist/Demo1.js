@@ -51,6 +51,7 @@ class Demo1 extends Component {
           点击显示默认loading
         </Button>
         <Loading
+            fullScreen
             showBackDrop={true}
             show={this.state.showRotate}
         />
