@@ -33,10 +33,10 @@
   "chrome": "bee-tools run chrome",
   "coveralls": "bee-tools run coverage",
   "browsers": "bee-tools run browsers",
-  "pub": "bee-tools run pub"
+  "pub": "bee-tools run pub",
+  "changelog":"conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
  },
  "dependencies": {
-  "babel-runtime": "^6.20.0",
   "bee-overlay": "^1.0.2",
   "classnames": "^2.2.5",
   "tinper-bee-core": "latest"
@@ -47,6 +47,7 @@
   "prop-types": "15.6.0"
  },
  "devDependencies": {
+  "babel-runtime": "^6.20.0",
   "bee-button": "latest",
   "bee-layout": "latest",
   "bee-panel": "latest",
