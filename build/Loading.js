@@ -24,6 +24,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -50,7 +52,11 @@ var propTypes = {
     /**
      * @title 不同颜色
      */
-    color: _propTypes2["default"].oneOf(['primary', 'success', 'warning', ""])
+    color: _propTypes2["default"].oneOf(['primary', 'success', 'warning', ""]),
+    /**
+     * @title 是否全屏loading
+     */
+    fullScreen: _propTypes2["default"].bool
 };
 
 var defaultProps = {
@@ -58,7 +64,8 @@ var defaultProps = {
     clsLoadBack: 'u-loading-back',
     loadingType: 'rotate',
     color: '',
-    showBackDrop: true
+    showBackDrop: true,
+    fullScreen: false
 };
 
 var sizeMap = {
@@ -69,10 +76,6 @@ var sizeMap = {
     primary: 'primary',
     success: 'success',
     warning: 'warning'
-},
-    loadingTypeMap = {
-    rotate: 'rotate',
-    line: 'line'
 };
 
 var Loading = function (_Component) {
@@ -85,6 +88,8 @@ var Loading = function (_Component) {
     }
 
     Loading.prototype.render = function render() {
+        var _backClassObj;
+
         var _props = this.props,
             clsPrefix = _props.clsPrefix,
             loadingType = _props.loadingType,
@@ -94,7 +99,8 @@ var Loading = function (_Component) {
             showBackDrop = _props.showBackDrop,
             container = _props.container,
             children = _props.children,
-            others = _objectWithoutProperties(_props, ['clsPrefix', 'loadingType', 'size', 'color', 'show', 'showBackDrop', 'container', 'children']);
+            fullScreen = _props.fullScreen,
+            others = _objectWithoutProperties(_props, ['clsPrefix', 'loadingType', 'size', 'color', 'show', 'showBackDrop', 'container', 'children', 'fullScreen']);
 
         var clsObj = {};
 
@@ -149,10 +155,12 @@ var Loading = function (_Component) {
             );
         }
 
+        var backClassObj = (_backClassObj = {}, _defineProperty(_backClassObj, clsPrefix + '-backdrop', true), _defineProperty(_backClassObj, 'full-screen', fullScreen), _backClassObj);
+
         if (showBackDrop) {
             dom = _react2["default"].createElement(
                 'div',
-                { className: clsPrefix + '-backdrop' },
+                { className: (0, _classnames2["default"])(backClassObj) },
                 dom
             );
         }
