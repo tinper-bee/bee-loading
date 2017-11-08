@@ -11,5 +11,5 @@
 |loadingType|类型(`rotate` `line`)|string|rotate|
 |size|加载大小(`large` `medium` `small`)|string|medium|
 |color|颜色(`primary` `success``warning`)|string|''|
-|container|渲染到的容器|node|body|
+|container|渲染到的容器，通过this可以显示在该组件的上面，也可以通过function中return一个元素来显示在指定元素上面|this或者function|默认显示在body上面|
 |showBackDrop|是否显示遮罩|boolean|true|
