@@ -4,7 +4,6 @@ import { Panel } from 'bee-panel';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Button from 'bee-button';
-import Modal from 'bee-modal';
 import Loading from '../src';
 
 
