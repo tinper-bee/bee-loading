@@ -95,6 +95,8 @@ import "./node_modules/bee-loading/build/Loding.css"
 |color|颜色(`primary` `success``warning`)|string|''|
 |container|渲染到的容器|node|body|
 |showBackDrop|是否显示遮罩|boolean|true|
+|fullScreen|是否全屏显示，或者只传入fullScreen即可|boolean|false|
+|wrapperClassName|容器样式|string|''|
 
 
 
