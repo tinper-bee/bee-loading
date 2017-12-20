@@ -1,6 +1,6 @@
 {
  "name": "bee-loading",
- "version": "1.0.2",
+ "version": "1.0.3",
  "description": "Loading ui component for react",
  "keywords": [
   "react",
@@ -34,7 +34,7 @@
   "coveralls": "bee-tools run coverage",
   "browsers": "bee-tools run browsers",
   "pub": "bee-tools run pub",
-  "changelog":"conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
+  "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
  },
  "dependencies": {
   "bee-overlay": "^1.0.2",

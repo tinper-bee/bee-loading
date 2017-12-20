@@ -15,3 +15,4 @@
 |showBackDrop|是否显示遮罩|boolean|true|
 |fullScreen|是否全屏显示，或者只传入fullScreen即可|boolean|false|
 |wrapperClassName|容器样式|string|''|
+ 
