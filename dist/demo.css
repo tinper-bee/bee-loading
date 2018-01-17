@@ -5344,36 +5344,28 @@ a, .mdl-accordion, .mdl-button, .mdl-card, .mdl-checkbox, .mdl-dropdown-menu,
   100% {
     transform: scaley(1); } }
 
-.displayDiv {
-  margin: 100px !important; }
+.demo2 {
+  position: relative;
+  height: 100px;
+  width: 500px;
+  border: 1px solid #0084ff;
+  overflow: hidden;
+  font-size: 14px; }
 
-.dispalyDiv {
-  width: 100%;
-  box-sizing: border-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex: 0 1 auto;
-  flex: 0 1 auto;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap; }
+.demo3 {
+  position: relative;
+  height: 100px;
+  width: 500px;
+  border: 1px solid #0084ff;
+  overflow: hidden;
+  font-size: 14px; }
 
-.u-modal-diaload {
-  top: 50%;
-  left: 50%;
-  margin-top: -60px;
-  margin-left: -55px;
-  position: absolute;
-  background: transparent;
-  height: auto;
-  width: auto; }
-  .u-modal-diaload .u-modal-header {
-    margin-right: -15px;
-    border-bottom: 1px solid transparent; }
-  .u-modal-diaload .u-modal-header {
-    padding: 0; }
-  .u-modal-diaload .u-modal-body {
-    padding: 0; }
+.demo4 {
+  position: relative;
+  height: 100px;
+  width: 500px;
+  border: 1px solid #0084ff;
+  overflow: hidden;
+  font-size: 14px; }
 
 /*# sourceMappingURL=demo.css.map */

@@ -3,34 +3,3 @@
 @import "../node_modules/bee-layout/build/Layout.css";
 @import "../node_modules/bee-panel/build/Panel.css";
 @import "../node_modules/bee-button/build/Button.css";
-.displayDiv{
-  margin:100px!important;
-}
-.dispalyDiv{
-  width: 100%;
-  box-sizing: border-box;
-  display: flex;
-  flex: 0 1 auto;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-.u-modal-diaload {
-  top:50%;
-  left: 50%;
-  margin-top: -60px;
-  margin-left: -55px;
-  position: absolute;
-  background: transparent;
-  height: auto;
-  width: auto;
-  .u-modal-header {
-    margin-right: -15px;
-    border-bottom: 1px solid transparent;
-  }
-  .u-modal-header{
-    padding:0;
-  }
-  .u-modal-body{
-    padding:0;
-  }
-}

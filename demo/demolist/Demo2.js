@@ -21,7 +21,7 @@ class Demo2 extends Component {
 
     render() {
         return (
-                <div style={{position: 'relative', height: 100,width: 500, border: '1px solid #0084ff' }}>
+                <div className="demo2">
                     <p>
                         曾经有一份真诚的爱情放在我面前，我没有珍惜，等我失去的时候我才后悔莫及，人世间最痛苦的事莫过于此。
                         如果上天能够给我一个再来一次的机会，我会对那个女孩子说三个字：我爱你。
