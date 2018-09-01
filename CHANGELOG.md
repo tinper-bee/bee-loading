@@ -1,5 +1,5 @@
 <a name="1.0.5"></a>
-## 1.0.5 (2018-09-01)
+## [1.0.5](https://github.com/tinper-bee/bee-loading/compare/073f878...v1.0.5) (2018-09-01)
 
 
 ### Bug Fixes
