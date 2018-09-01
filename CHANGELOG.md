@@ -1,6 +1,5 @@
-<a name="1.0.3"></a>
-## 1.0.3 (2017-12-20)
-
+<a name="1.0.5"></a>
+## 1.0.5 (2018-09-01)
 
 
 ### Bug Fixes
@@ -22,7 +21,6 @@
 
 * 增加container传递回调函数来设置，完善文档 ([36edde9](https://github.com/tinper-bee/bee-loading/commit/36edde9))
 * **Loading.js:** 新增wrapperClassName参数可以自定义样式，并添加文档 ([847a5ae](https://github.com/tinper-bee/bee-loading/commit/847a5ae)), closes [#2](https://github.com/tinper-bee/bee-loading/issues/2)
-
 
 
 ### BREAKING CHANGES
