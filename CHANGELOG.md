@@ -1,3 +1,8 @@
+<a name="1.0.6"></a>
+## [1.0.6](https://github.com/tinper-bee/bee-loading/compare/v1.0.5...v1.0.6) (2019-02-25)
+
+
+
 <a name="1.0.5"></a>
 ## [1.0.5](https://github.com/tinper-bee/bee-loading/compare/073f878...v1.0.5) (2018-09-01)
 
