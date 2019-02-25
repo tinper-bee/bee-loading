@@ -3,6 +3,7 @@ import { findDOMNode } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 import Portal from "bee-overlay/build/Portal";
+import Icon from 'bee-icon';
 
 const propTypes = {
   /**
@@ -95,7 +96,7 @@ class Loading extends Component {
       dom = (
         <div>
           <div className={classes}>
-            <div />
+            <div><Icon type="uf-loadingstate" /></div>
           </div>
           {children && <div className={`${clsPrefix}-desc`}>{children}</div>}
         </div>
