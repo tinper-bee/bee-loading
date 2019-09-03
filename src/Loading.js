@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { findDOMNode } from "react";
+import ReactDOM from 'react-dom';
 import PropTypes from "prop-types";
 import classnames from "classnames";
 import Portal from "bee-overlay/build/Portal"; 
@@ -50,10 +50,21 @@ const sizeMap = {
     success: "success",
     warning: "warning"
   };
-
+const isReact16 = ReactDOM.createPortal !== undefined;
 class Loading extends Component {
   constructor(props) {
     super(props);
+  }
+  componentDidMount(){
+    let { clsPrefix, container } = this.props;
+    if(isReact16 && container){
+      this.portalContainerNode = this.getContainer(this.props.container);
+      this.portalContainerNode.className += ` ${clsPrefix}-container`;
+    }
+  }
+  getContainer(container, defaultContainer){
+    container = typeof container === 'function' ? container() : container;
+    return ReactDOM.findDOMNode(container) || defaultContainer;
   }
   render() {
     const {
@@ -134,7 +145,6 @@ class Loading extends Component {
     if (showBackDrop) {
       dom = <div className={classnames(backClassObj)}>{dom}</div>;
     }
-    //console.log(container);
 
     return <Portal container={container}>{dom}</Portal>;
   }

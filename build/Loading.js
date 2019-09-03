@@ -8,6 +8,10 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactDom = require("react-dom");
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
 var _propTypes = require("prop-types");
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
@@ -81,6 +85,7 @@ var sizeMap = {
   success: "success",
   warning: "warning"
 };
+var isReact16 = _reactDom2["default"].createPortal !== undefined;
 
 var Loading = function (_Component) {
   _inherits(Loading, _Component);
@@ -91,22 +96,38 @@ var Loading = function (_Component) {
     return _possibleConstructorReturn(this, _Component.call(this, props));
   }
 
+  Loading.prototype.componentDidMount = function componentDidMount() {
+    var _props = this.props,
+        clsPrefix = _props.clsPrefix,
+        container = _props.container;
+
+    if (isReact16 && container) {
+      this.portalContainerNode = this.getContainer(this.props.container);
+      this.portalContainerNode.className += " " + clsPrefix + "-container";
+    }
+  };
+
+  Loading.prototype.getContainer = function getContainer(container, defaultContainer) {
+    container = typeof container === 'function' ? container() : container;
+    return _reactDom2["default"].findDOMNode(container) || defaultContainer;
+  };
+
   Loading.prototype.render = function render() {
     var _backClassObj;
 
-    var _props = this.props,
-        clsPrefix = _props.clsPrefix,
-        loadingType = _props.loadingType,
-        size = _props.size,
-        color = _props.color,
-        show = _props.show,
-        showBackDrop = _props.showBackDrop,
-        container = _props.container,
-        children = _props.children,
-        fullScreen = _props.fullScreen,
-        wrapperClassName = _props.wrapperClassName,
-        indicator = _props.indicator,
-        others = _objectWithoutProperties(_props, ["clsPrefix", "loadingType", "size", "color", "show", "showBackDrop", "container", "children", "fullScreen", "wrapperClassName", "indicator"]);
+    var _props2 = this.props,
+        clsPrefix = _props2.clsPrefix,
+        loadingType = _props2.loadingType,
+        size = _props2.size,
+        color = _props2.color,
+        show = _props2.show,
+        showBackDrop = _props2.showBackDrop,
+        container = _props2.container,
+        children = _props2.children,
+        fullScreen = _props2.fullScreen,
+        wrapperClassName = _props2.wrapperClassName,
+        indicator = _props2.indicator,
+        others = _objectWithoutProperties(_props2, ["clsPrefix", "loadingType", "size", "color", "show", "showBackDrop", "container", "children", "fullScreen", "wrapperClassName", "indicator"]);
 
     var clsObj = {};
 
@@ -197,7 +218,6 @@ var Loading = function (_Component) {
         dom
       );
     }
-    //console.log(container);
 
     return _react2["default"].createElement(
       _Portal2["default"],
