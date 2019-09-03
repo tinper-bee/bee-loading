@@ -16,9 +16,9 @@ var _propTypes = require("prop-types");
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _classnames = require("classnames");
+var _classnames2 = require("classnames");
 
-var _classnames2 = _interopRequireDefault(_classnames);
+var _classnames3 = _interopRequireDefault(_classnames2);
 
 var _Portal = require("bee-overlay/build/Portal");
 
@@ -63,7 +63,8 @@ var propTypes = {
    * @title 是否全屏loading
    */
   fullScreen: _propTypes2["default"].bool,
-  wrapperClassName: _propTypes2["default"].string
+  wrapperClassName: _propTypes2["default"].string,
+  tip: _propTypes2["default"].string
 };
 
 var defaultProps = {
@@ -76,15 +77,6 @@ var defaultProps = {
   wrapperClassName: ""
 };
 
-var sizeMap = {
-  sm: "sm",
-  lg: "lg"
-},
-    colorsMap = {
-  primary: "primary",
-  success: "success",
-  warning: "warning"
-};
 var isReact16 = _reactDom2["default"].createPortal !== undefined;
 
 var Loading = function (_Component) {
@@ -113,7 +105,7 @@ var Loading = function (_Component) {
   };
 
   Loading.prototype.render = function render() {
-    var _backClassObj;
+    var _classnames, _backClassObj;
 
     var _props2 = this.props,
         clsPrefix = _props2.clsPrefix,
@@ -127,29 +119,17 @@ var Loading = function (_Component) {
         fullScreen = _props2.fullScreen,
         wrapperClassName = _props2.wrapperClassName,
         indicator = _props2.indicator,
-        others = _objectWithoutProperties(_props2, ["clsPrefix", "loadingType", "size", "color", "show", "showBackDrop", "container", "children", "fullScreen", "wrapperClassName", "indicator"]);
-
-    var clsObj = {};
+        tip = _props2.tip,
+        others = _objectWithoutProperties(_props2, ["clsPrefix", "loadingType", "size", "color", "show", "showBackDrop", "container", "children", "fullScreen", "wrapperClassName", "indicator", "tip"]);
 
     if (!show) return null;
 
-    clsObj[clsPrefix + "-" + loadingType] = true;
+    var clsObj = (0, _classnames3["default"])(clsPrefix, (_classnames = {}, _defineProperty(_classnames, clsPrefix + "-" + loadingType, true), _defineProperty(_classnames, clsPrefix + "-" + loadingType + "-sm", size === 'sm'), _defineProperty(_classnames, clsPrefix + "-" + loadingType + "-lg", size === 'lg'), _defineProperty(_classnames, clsPrefix + "-" + loadingType + "-" + color, !!color), _defineProperty(_classnames, clsPrefix + "-show-text", !!tip), _classnames), wrapperClassName);
 
-    if (sizeMap[size]) {
-      clsObj[clsPrefix + "-" + loadingType + "-" + sizeMap[size]] = true;
-    }
-
-    if (colorsMap[color]) {
-      clsObj[clsPrefix + "-" + loadingType + "-" + colorsMap[color]] = true;
-    }
-
-    var classes = (0, _classnames2["default"])(clsPrefix, clsObj);
+    var classes = (0, _classnames3["default"])(clsPrefix, clsObj);
 
     var dom = "";
 
-    if (wrapperClassName) {
-      classes += " " + wrapperClassName;
-    }
     if (loadingType === "custom" && !!indicator) {
       dom = _react2["default"].createElement(
         "div",
@@ -159,14 +139,14 @@ var Loading = function (_Component) {
           { className: classes },
           _react2["default"].createElement(
             "div",
-            null,
+            { className: clsPrefix + "-spin" },
             indicator
-          )
-        ),
-        children && _react2["default"].createElement(
-          "div",
-          { className: clsPrefix + "-desc" },
-          children
+          ),
+          tip ? _react2["default"].createElement(
+            "div",
+            { className: clsPrefix + "-desc" },
+            tip
+          ) : null
         )
       );
     } else if (loadingType === "rotate") {
@@ -178,14 +158,14 @@ var Loading = function (_Component) {
           { className: classes },
           _react2["default"].createElement(
             "div",
-            null,
+            { className: clsPrefix + "-spin" },
             _react2["default"].createElement("img", { src: loadImg })
-          )
-        ),
-        children && _react2["default"].createElement(
-          "div",
-          { className: clsPrefix + "-desc" },
-          children
+          ),
+          tip ? _react2["default"].createElement(
+            "p",
+            { className: clsPrefix + "-desc" },
+            tip
+          ) : null
         )
       );
     } else if (loadingType === "line") {
@@ -214,7 +194,7 @@ var Loading = function (_Component) {
     if (showBackDrop) {
       dom = _react2["default"].createElement(
         "div",
-        { className: (0, _classnames2["default"])(backClassObj) },
+        { className: (0, _classnames3["default"])(backClassObj) },
         dom
       );
     }

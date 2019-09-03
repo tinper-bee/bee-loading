@@ -80,7 +80,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
 	
-	var Demo0 = __webpack_require__(270);var Demo1 = __webpack_require__(274);var Demo2 = __webpack_require__(275);var Demo3 = __webpack_require__(276);var Demo4 = __webpack_require__(277);var Demo5 = __webpack_require__(278);var Demo6 = __webpack_require__(279);var DemoArray = [{ "example": _react2['default'].createElement(Demo0, null), "title": " 页面级加载提示", "code": "/**\r\n * @title 页面级加载提示\r\n * @description 页面级加载提示推荐使用进度条组件\r\n */\r\n\r\nimport React, { Component } from 'react';\nimport { Button, ProgressBar } from 'tinper-bee';\r\n\n\n\r\n\r\n\r\nclass Demo0 extends Component {\r\n    start = () => {\r\n        ProgressBar.start();\r\n    }\r\n    set = () => {\r\n        ProgressBar.set(0.4);\r\n    }\r\n    inc = () => {\r\n        ProgressBar.inc();\r\n    }\r\n    done = () => {\r\n        ProgressBar.done();\r\n    }\r\n\trender(){\r\n        const style = {marginRight:\"10px\"};\r\n\t\treturn (\r\n\t\t\t<div>\r\n\t\t\t\t<Button style={style} onClick={this.start}>点我开始</Button>\r\n\t\t\t\t<Button style={style} onClick={this.set}>设置固定位置</Button>\r\n\t\t\t\t<Button style={style} onClick={this.inc}>点我加快</Button>\r\n\t\t\t\t<Button onClick={this.done}>点我结束</Button>\r\n\t\t\t</div>\r\n\t\t)\r\n\t}\r\n}\r\n\r\nexport default Demo0;", "desc": " 页面级加载提示推荐使用进度条组件" }, { "example": _react2['default'].createElement(Demo1, null), "title": " 基础Loading", "code": "/**\n *\n * @title 基础Loading\n * @description 设置`loadingType`来修改Loading样式。默认是'rotate'。\n *\n */\n\nimport React, { Component } from 'react';\nimport { Button, Loading } from 'tinper-bee';\n\n\nclass Demo1 extends Component {\n  constructor(props) {\n    super(props);\n    this.state = {\n      showRotate: false,\n        showLine: false\n    }\n  }\n\n  handleShow = () => {\n      this.setState({\n          showRotate: true\n      })\n      setTimeout(() => {\n          this.setState({\n              showRotate: false\n          })\n      }, 3000)\n\n  }\n\n    handleShowLine = () => {\n        this.setState({\n            showLine: true\n        })\n        setTimeout(() => {\n            this.setState({\n                showLine: false\n            })\n        }, 3000)\n\n    }\n\n  render() {\n    return (\n      <div>\n        <Button\n            colors=\"primary\"\n            onClick={this.handleShow}>\n          点击显示默认loading\n        </Button>\n        <Loading\n            fullScreen\n            showBackDrop={true}\n            show={this.state.showRotate}\n        />\n        <Button\n            colors=\"primary\"\n            style={{ marginLeft: 50 }}\n            onClick={this.handleShowLine}>\n          点击显示line loading\n        </Button>\n        <Loading\n            fullScreen\n            showBackDrop={true}\n            loadingType=\"line\"\n            show={this.state.showLine}\n        />\n      </div>\n    )\n  }\n}\n\nexport default Demo1;", "desc": " 设置`loadingType`来修改Loading样式。默认是'rotate'。" }, { "example": _react2['default'].createElement(Demo2, null), "title": " 将Loading渲染到容器中", "code": "/**\r\n *\r\n * @title 将Loading渲染到容器中\r\n * @description 通过设置`container`属性，来控制loading渲染位置\r\n *\r\n */\r\n\r\nimport React, { Component } from 'react';\nimport { Loading } from 'tinper-bee';\r\n\r\n\r\n\r\nclass Demo2 extends Component {\r\n    constructor(props) {\r\n        super(props);\r\n        this.state = {\r\n            show: true\r\n        }\r\n        this.a = null;\r\n    }\r\n\r\n\r\n    render() {\r\n        return (\r\n                <div className=\"demo2\">\r\n                    <p>\r\n                        曾经有一份真诚的爱情放在我面前，我没有珍惜，等我失去的时候我才后悔莫及，人世间最痛苦的事莫过于此。\r\n                        如果上天能够给我一个再来一次的机会，我会对那个女孩子说三个字：我爱你。\r\n                        如果非要在这份爱上加上一个期限，我希望是……\r\n                        一万年\r\n                    </p>\r\n                    <Loading container={this} show={this.state.show} />\r\n                </div>\r\n        )\r\n    }\r\n}\r\n\r\n\r\nexport default Demo2;", "desc": " 通过设置`container`属性，来控制loading渲染位置", "scss_code": ".demo2{\r\n  height: 100px;\r\n  width: 500px;\r\n  border: 1px solid #c1c7d0;\r\n  overflow: hidden;\r\n  font-size: 14px;\r\n  .u-loading-backdrop{\r\n    z-index:1029;\r\n  }\r\n}" }, { "example": _react2['default'].createElement(Demo3, null), "title": " 添加描述", "code": "/**\r\n *\r\n * @title 添加描述\r\n * @description 通过添加children，来添加Loading的文字描述。size 属性设置加载图标的大小。\r\n *\r\n */\r\n\r\nimport React, { Component } from 'react';\nimport { Loading } from 'tinper-bee';\r\n\r\n\r\n\r\nclass Demo3 extends Component {\r\n    constructor(props) {\r\n        super(props);\r\n        this.state = {\r\n            show: true\r\n        }\r\n        this.a = null;\r\n    }\r\n\r\n    render() {\r\n        return (\r\n            <div className=\"demo3\">\r\n                <p>\r\n                    曾经有一份真诚的爱情放在我面前，我没有珍惜，等我失去的时候我才后悔莫及，人世间最痛苦的事莫过于此。\r\n                    如果上天能够给我一个再来一次的机会，我会对那个女孩子说三个字：我爱你。\r\n                    如果非要在这份爱上加上一个期限，我希望是……\r\n                    一万年\r\n                </p>\r\n                <Loading\r\n                    describe={true}\r\n                    container={this}\r\n                    show={this.state.show} >\r\n                    加载中\r\n                </Loading>\r\n            </div>\r\n        )\r\n    }\r\n}\r\n\r\n\r\nexport default Demo3;", "desc": " 通过添加children，来添加Loading的文字描述。size 属性设置加载图标的大小。", "scss_code": ".demo3{\r\n  height: 100px;\r\n  width: 500px;\r\n  border: 1px solid #c1c7d0;\r\n  overflow: hidden;\r\n  font-size: 14px;\r\n  .u-loading-backdrop{\r\n    z-index:1029;\r\n  }\r\n}" }, { "example": _react2['default'].createElement(Demo4, null), "title": " 将Loading渲染到容器中", "code": "/**\r\n *\r\n * @title 将Loading渲染到容器中\r\n * @description 通过设置`container`属性，通过传入function的方式，来控制loading渲染位置\r\n *\r\n */\r\n\r\nimport React, { Component } from 'react';\nimport { Loading } from 'tinper-bee';\r\n\r\n\r\n\r\nclass Demo4 extends Component {\r\n    constructor(props) {\r\n        super(props);\r\n        this.state = {\r\n            show: true\r\n        }\r\n        this.a = null;\r\n    }\r\n    getElement =()=>{\r\n        return document.querySelector('.demo4')\r\n    }\r\n\r\n\r\n    render() {\r\n        return (\r\n                <div className=\"demo4\">\r\n                    <p>\r\n                    \r\n                        曾经有一份真诚的爱情放在我面前，我没有珍惜，等我失去的时候我才后悔莫及，人世间最痛苦的事莫过于此。\r\n                        如果上天能够给我一个再来一次的机会，我会对那个女孩子说三个字：我爱你。\r\n                        如果非要在这份爱上加上一个期限，我希望是……\r\n                        一万年\r\n                    </p>\r\n                    <Loading container={this.getElement} show={this.state.show} />\r\n                </div>\r\n        )\r\n    }\r\n}\r\n\r\n\r\nexport default Demo4;\r\n", "desc": " 通过设置`container`属性，通过传入function的方式，来控制loading渲染位置", "scss_code": ".demo4{\r\n  height: 100px;\r\n  width: 500px;\r\n  border: 1px solid #c1c7d0;\r\n  overflow: hidden;\r\n  font-size: 14px;\r\n  .u-loading-backdrop{\r\n    z-index:1029;\r\n  }\r\n}" }, { "example": _react2['default'].createElement(Demo5, null), "title": " 不同尺寸的Loading", "code": "/**\r\n *\r\n * @title 不同尺寸的Loading\r\n * @description 通过设置`size`属性，来控制loading图标的大小\r\n *\r\n */\r\n\r\nimport React, { Component } from 'react';\nimport { Loading } from 'tinper-bee';\r\n\r\n\r\n\r\nclass Demo5 extends Component {\r\n    constructor(props) {\r\n        super(props);\r\n        this.state = {\r\n            show: true\r\n        }\r\n        this.a = null;\r\n    }\r\n\r\n\r\n    render() {\r\n        return (\r\n                <div className=\"demo5\">\r\n                    <Loading size=\"sm\" container={this} show={this.state.show} />\r\n                    <Loading container={this} show={this.state.show} />\r\n                    <Loading size=\"lg\" container={this} show={this.state.show} />\r\n                </div>\r\n        )\r\n    }\r\n}\r\n\r\n\r\nexport default Demo5;", "desc": " 通过设置`size`属性，来控制loading图标的大小", "scss_code": ".demo5{\r\n    height: 100px;\r\n    width: 500px;\r\n    overflow: hidden;\r\n    font-size: 14px;\r\n    .u-loading-backdrop{\r\n      z-index:1029;\r\n      background: rgba(255,255,255,0);\r\n    }\r\n    .u-loading.u-loading-rotate.u-loading-rotate-sm>div{\r\n        left: 20%;\r\n    }\r\n    .u-loading.u-loading-rotate>div{\r\n        left: 40%;\r\n    }\r\n    .u-loading.u-loading-rotate.u-loading-rotate-lg>div{\r\n        left: 65%;\r\n    }\r\n}" }, { "example": _react2['default'].createElement(Demo6, null), "title": " 自定义加载图标", "code": "/**\r\n *\r\n * @title 自定义加载图标\r\n * @description 如需自定义加载图标，需要同时设置 `loadingType` 属性和 `indicator` 属性。\r\n *\r\n */\r\n\r\nimport React, { Component } from 'react';\nimport { Loading } from 'tinper-bee';\r\n\r\n\r\nlet imgsrc = \"http://design.yonyoucloud.com/static/bee.tinper.org-demo/loading.gif\";\r\n\r\nclass Demo6 extends Component {\r\n    constructor(props) {\r\n        super(props);\r\n        this.state = {\r\n            show: true\r\n        }\r\n        this.a = null;\r\n    }\r\n\r\n\r\n    render() {\r\n        const beeIcon = <img src={imgsrc} style={{width:'50px'}}/>;\r\n        return (\r\n            <div className=\"demo5\">\r\n                <Loading \r\n                    container={this} \r\n                    show={this.state.show} \r\n                    loadingType=\"custom\"  //启用自定义图标\r\n                    indicator={beeIcon}  //自定义图标的内容\r\n                />\r\n            </div>\r\n        )\r\n    }\r\n}\r\n\r\n\r\nexport default Demo6;", "desc": " 如需自定义加载图标，需要同时设置 `loadingType` 属性和 `indicator` 属性。" }];
+	var Demo0 = __webpack_require__(270);var Demo1 = __webpack_require__(274);var Demo2 = __webpack_require__(275);var Demo3 = __webpack_require__(276);var Demo4 = __webpack_require__(277);var Demo5 = __webpack_require__(278);var Demo6 = __webpack_require__(279);var DemoArray = [{ "example": _react2['default'].createElement(Demo0, null), "title": " 页面级加载提示", "code": "/**\r\n * @title 页面级加载提示\r\n * @description 页面级加载提示推荐使用进度条组件\r\n */\r\n\r\nimport React, { Component } from 'react';\nimport { Button, ProgressBar } from 'tinper-bee';\r\n\n\n\r\n\r\n\r\nclass Demo0 extends Component {\r\n    start = () => {\r\n        ProgressBar.start();\r\n    }\r\n    set = () => {\r\n        ProgressBar.set(0.4);\r\n    }\r\n    inc = () => {\r\n        ProgressBar.inc();\r\n    }\r\n    done = () => {\r\n        ProgressBar.done();\r\n    }\r\n\trender(){\r\n        const style = {marginRight:\"10px\"};\r\n\t\treturn (\r\n\t\t\t<div>\r\n\t\t\t\t<Button style={style} onClick={this.start}>点我开始</Button>\r\n\t\t\t\t<Button style={style} onClick={this.set}>设置固定位置</Button>\r\n\t\t\t\t<Button style={style} onClick={this.inc}>点我加快</Button>\r\n\t\t\t\t<Button onClick={this.done}>点我结束</Button>\r\n\t\t\t</div>\r\n\t\t)\r\n\t}\r\n}\r\n\r\nexport default Demo0;", "desc": " 页面级加载提示推荐使用进度条组件" }, { "example": _react2['default'].createElement(Demo1, null), "title": " 基本用法", "code": "/**\n *\n * @title 基本用法\n * @description 设置`loadingType`来修改Loading样式。默认是'rotate'。\n *\n */\n\nimport React, { Component } from 'react';\nimport { Button, Loading } from 'tinper-bee';\n\n\nclass Demo1 extends Component {\n  constructor(props) {\n    super(props);\n    this.state = {\n      showRotate: false,\n        showLine: false\n    }\n  }\n\n  handleShow = () => {\n      this.setState({\n          showRotate: true\n      })\n      setTimeout(() => {\n          this.setState({\n              showRotate: false\n          })\n      }, 3000)\n\n  }\n\n    handleShowLine = () => {\n        this.setState({\n            showLine: true\n        })\n        setTimeout(() => {\n            this.setState({\n                showLine: false\n            })\n        }, 3000)\n\n    }\n\n  render() {\n    return (\n      <div>\n        <Button\n            colors=\"primary\"\n            onClick={this.handleShow}>\n          点击显示默认loading\n        </Button>\n        <Loading\n            fullScreen\n            showBackDrop={true}\n            show={this.state.showRotate}\n        />\n        <Button\n            colors=\"primary\"\n            style={{ marginLeft: 50 }}\n            onClick={this.handleShowLine}>\n          点击显示line loading\n        </Button>\n        <Loading\n            fullScreen\n            showBackDrop={true}\n            loadingType=\"line\"\n            show={this.state.showLine}\n        />\n      </div>\n    )\n  }\n}\n\nexport default Demo1;", "desc": " 设置`loadingType`来修改Loading样式。默认是'rotate'。" }, { "example": _react2['default'].createElement(Demo2, null), "title": " 容器", "code": "/**\r\n *\r\n * @title 容器\r\n * @description 指定`container`属性为`this`，可显示在该组件的上面。\r\n *\r\n */\r\n\r\nimport React, { Component } from 'react';\nimport { Loading } from 'tinper-bee';\r\n\r\n\r\nclass Demo2 extends Component {\r\n    render() {\r\n        return (\r\n            <div className=\"demo2\">\r\n                <Loading container={this} show={true}/>\r\n            </div>\r\n        )\r\n    }\r\n}\r\n\r\nexport default Demo2;", "desc": " 指定`container`属性为`this`，可显示在该组件的上面。", "scss_code": ".demo2{\r\n  height: 100px;\r\n  width: 500px;\r\n  background: rgba(0, 0, 0, 0.05);\r\n  overflow: hidden;\r\n  font-size: 14px;\r\n  .u-loading-backdrop{\r\n    z-index:1029;\r\n  }\r\n}" }, { "example": _react2['default'].createElement(Demo3, null), "title": " 容器", "code": "/**\r\n *\r\n * @title 容器\r\n * @description 通过document对象的方法，指定`container`属性。\r\n *\r\n */\r\n\r\nimport React, { Component } from 'react';\nimport { Loading } from 'tinper-bee';\r\n\r\n\r\nclass Demo4 extends Component {\r\n    constructor(props) {\r\n        super(props);\r\n    }\r\n    getElement =()=>{\r\n        return document.querySelector('.demo4')\r\n    }\r\n    render() {\r\n        return (\r\n            <div className=\"demo4\">\r\n                <Loading container={this.getElement} show={true} />\r\n            </div>\r\n        )\r\n    }\r\n}\r\n\r\n\r\nexport default Demo4;\r\n", "desc": " 通过document对象的方法，指定`container`属性。", "scss_code": ".demo4{\r\n  height: 100px;\r\n  width: 500px;\r\n  background: rgba(0, 0, 0, 0.05);\r\n  overflow: hidden;\r\n  font-size: 14px;\r\n  .u-loading-backdrop{\r\n    z-index:1029;\r\n  }\r\n}" }, { "example": _react2['default'].createElement(Demo4, null), "title": " 自定义描述文案", "code": "/**\r\n *\r\n * @title 自定义描述文案\r\n * @description 通过设置 `tip` 属性，来添加Loading的文字描述。\r\n *\r\n */\r\n\r\nimport React, { Component } from 'react';\nimport { Loading } from 'tinper-bee';\r\n\r\n\r\n\r\nclass Demo3 extends Component {\r\n    constructor(props) {\r\n        super(props);\r\n        this.a = null;\r\n    }\r\n\r\n    render() {\r\n        return (\r\n            <div className=\"demo3\">\r\n                <p>\r\n                    曾经有一份真诚的爱情放在我面前，我没有珍惜，等我失去的时候我才后悔莫及，人世间最痛苦的事莫过于此。\r\n                    如果上天能够给我一个再来一次的机会，我会对那个女孩子说三个字：我爱你。\r\n                    如果非要在这份爱上加上一个期限，我希望是……\r\n                    一万年\r\n                </p>\r\n                <Loading\r\n                container={this}\r\n                show={true} \r\n                tip=\"Loading...\"\r\n                />\r\n            </div>\r\n        )\r\n    }\r\n}\r\n\r\n\r\nexport default Demo3;", "desc": " 通过设置 `tip` 属性，来添加Loading的文字描述。", "scss_code": ".demo3{\r\n  height: 130px;\r\n  width: 500px;\r\n  border: 1px solid #c1c7d0;\r\n  overflow: hidden;\r\n  font-size: 14px;\r\n  .u-loading-backdrop{\r\n    z-index:1029;\r\n  }\r\n}" }, { "example": _react2['default'].createElement(Demo5, null), "title": " 不同尺寸的Loading", "code": "/**\r\n *\r\n * @title 不同尺寸的Loading\r\n * @description 通过设置`size`属性，来控制loading图标的大小\r\n *\r\n */\r\n\r\nimport React, { Component } from 'react';\nimport { Loading } from 'tinper-bee';\r\n\r\n\r\n\r\nclass Demo5 extends Component {\r\n    constructor(props) {\r\n        super(props);\r\n        this.state = {\r\n            show: true\r\n        }\r\n        this.a = null;\r\n    }\r\n\r\n\r\n    render() {\r\n        return (\r\n                <div className=\"demo5\">\r\n                    <Loading size=\"sm\" container={this} show={this.state.show} />\r\n                    <Loading container={this} show={this.state.show} />\r\n                    <Loading size=\"lg\" container={this} show={this.state.show} />\r\n                </div>\r\n        )\r\n    }\r\n}\r\n\r\n\r\nexport default Demo5;", "desc": " 通过设置`size`属性，来控制loading图标的大小", "scss_code": ".demo5{\r\n    height: 100px;\r\n    width: 500px;\r\n    overflow: hidden;\r\n    font-size: 14px;\r\n    .u-loading-backdrop{\r\n      z-index:1029;\r\n      background: rgba(255,255,255,0);\r\n    }\r\n    .u-loading.u-loading-rotate.u-loading-rotate-sm>div{\r\n        left: 20%;\r\n    }\r\n    .u-loading.u-loading-rotate>div{\r\n        left: 40%;\r\n    }\r\n    .u-loading.u-loading-rotate.u-loading-rotate-lg>div{\r\n        left: 65%;\r\n    }\r\n}" }, { "example": _react2['default'].createElement(Demo6, null), "title": " 自定义加载图标", "code": "/**\r\n *\r\n * @title 自定义加载图标\r\n * @description 如需自定义加载图标，需要同时设置 `loadingType` 属性和 `indicator` 属性。\r\n *\r\n */\r\n\r\nimport React, { Component } from 'react';\nimport { Loading } from 'tinper-bee';\r\n\r\n\r\nlet imgsrc = \"http://design.yonyoucloud.com/static/bee.tinper.org-demo/loading.gif\";\r\n\r\nclass Demo6 extends Component {\r\n    constructor(props) {\r\n        super(props);\r\n        this.state = {\r\n            show: true\r\n        }\r\n        this.a = null;\r\n    }\r\n\r\n\r\n    render() {\r\n        const beeIcon = <img src={imgsrc} style={{width:'50px'}}/>;\r\n        return (\r\n            <div className=\"demo5\">\r\n                <Loading \r\n                    container={this} \r\n                    show={this.state.show} \r\n                    loadingType=\"custom\"  //启用自定义图标\r\n                    indicator={beeIcon}  //自定义图标的内容\r\n                />\r\n            </div>\r\n        )\r\n    }\r\n}\r\n\r\n\r\nexport default Demo6;", "desc": " 如需自定义加载图标，需要同时设置 `loadingType` 属性和 `indicator` 属性。" }];
 	
 	var Demo = function (_Component) {
 	    _inherits(Demo, _Component);
@@ -36883,9 +36883,9 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _classnames = __webpack_require__(5);
+	var _classnames2 = __webpack_require__(5);
 	
-	var _classnames2 = _interopRequireDefault(_classnames);
+	var _classnames3 = _interopRequireDefault(_classnames2);
 	
 	var _Portal = __webpack_require__(100);
 	
@@ -36930,7 +36930,8 @@
 	   * @title 是否全屏loading
 	   */
 	  fullScreen: _propTypes2["default"].bool,
-	  wrapperClassName: _propTypes2["default"].string
+	  wrapperClassName: _propTypes2["default"].string,
+	  tip: _propTypes2["default"].string
 	};
 	
 	var defaultProps = {
@@ -36980,7 +36981,7 @@
 	  };
 	
 	  Loading.prototype.render = function render() {
-	    var _backClassObj;
+	    var _classnames, _backClassObj;
 	
 	    var _props2 = this.props,
 	        clsPrefix = _props2.clsPrefix,
@@ -36994,29 +36995,32 @@
 	        fullScreen = _props2.fullScreen,
 	        wrapperClassName = _props2.wrapperClassName,
 	        indicator = _props2.indicator,
-	        others = _objectWithoutProperties(_props2, ["clsPrefix", "loadingType", "size", "color", "show", "showBackDrop", "container", "children", "fullScreen", "wrapperClassName", "indicator"]);
+	        tip = _props2.tip,
+	        others = _objectWithoutProperties(_props2, ["clsPrefix", "loadingType", "size", "color", "show", "showBackDrop", "container", "children", "fullScreen", "wrapperClassName", "indicator", "tip"]);
 	
-	    var clsObj = {};
+	    // let clsObj = {};
 	
 	    if (!show) return null;
 	
-	    clsObj[clsPrefix + "-" + loadingType] = true;
+	    // clsObj[`${clsPrefix}-${loadingType}`] = true;
 	
-	    if (sizeMap[size]) {
-	      clsObj[clsPrefix + "-" + loadingType + "-" + sizeMap[size]] = true;
-	    }
+	    // if (sizeMap[size]) {
+	    //   clsObj[`${clsPrefix}-${loadingType}-${sizeMap[size]}`] = true;
+	    // }
 	
-	    if (colorsMap[color]) {
-	      clsObj[clsPrefix + "-" + loadingType + "-" + colorsMap[color]] = true;
-	    }
+	    // if (colorsMap[color]) {
+	    //   clsObj[`${clsPrefix}-${loadingType}-${colorsMap[color]}`] = true;
+	    // }
 	
-	    var classes = (0, _classnames2["default"])(clsPrefix, clsObj);
+	    var clsObj = (0, _classnames3["default"])(clsPrefix, (_classnames = {}, _defineProperty(_classnames, clsPrefix + "-" + loadingType, true), _defineProperty(_classnames, clsPrefix + "-" + loadingType + "-sm", size === 'sm'), _defineProperty(_classnames, clsPrefix + "-" + loadingType + "-lg", size === 'lg'), _defineProperty(_classnames, clsPrefix + "-" + loadingType + "-" + color, !!color), _defineProperty(_classnames, clsPrefix + "-show-text", !!tip), _classnames), wrapperClassName);
+	
+	    var classes = (0, _classnames3["default"])(clsPrefix, clsObj);
 	
 	    var dom = "";
 	
-	    if (wrapperClassName) {
-	      classes += " " + wrapperClassName;
-	    }
+	    // if (wrapperClassName) {
+	    //   classes += " " + wrapperClassName;
+	    // }
 	    if (loadingType === "custom" && !!indicator) {
 	      dom = _react2["default"].createElement(
 	        "div",
@@ -37026,14 +37030,14 @@
 	          { className: classes },
 	          _react2["default"].createElement(
 	            "div",
-	            null,
+	            { className: clsPrefix + "-spin" },
 	            indicator
-	          )
-	        ),
-	        children && _react2["default"].createElement(
-	          "div",
-	          { className: clsPrefix + "-desc" },
-	          children
+	          ),
+	          tip ? _react2["default"].createElement(
+	            "div",
+	            { className: clsPrefix + "-desc" },
+	            tip
+	          ) : null
 	        )
 	      );
 	    } else if (loadingType === "rotate") {
@@ -37045,14 +37049,14 @@
 	          { className: classes },
 	          _react2["default"].createElement(
 	            "div",
-	            null,
+	            { className: clsPrefix + "-spin" },
 	            _react2["default"].createElement("img", { src: loadImg })
-	          )
-	        ),
-	        children && _react2["default"].createElement(
-	          "div",
-	          { className: clsPrefix + "-desc" },
-	          children
+	          ),
+	          tip ? _react2["default"].createElement(
+	            "p",
+	            { className: clsPrefix + "-desc" },
+	            tip
+	          ) : null
 	        )
 	      );
 	    } else if (loadingType === "line") {
@@ -37081,7 +37085,7 @@
 	    if (showBackDrop) {
 	      dom = _react2["default"].createElement(
 	        "div",
-	        { className: (0, _classnames2["default"])(backClassObj) },
+	        { className: (0, _classnames3["default"])(backClassObj) },
 	        dom
 	      );
 	    }
@@ -38007,7 +38011,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); } /**
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @title 基础Loading
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @title 基本用法
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description 设置`loadingType`来修改Loading样式。默认是'rotate'。
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
@@ -38116,36 +38120,25 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); } /**
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @title 将Loading渲染到容器中
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description 通过设置`container`属性，来控制loading渲染位置
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @title 容器
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description 指定`container`属性为`this`，可显示在该组件的上面。
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
 	var Demo2 = function (_Component) {
 	    _inherits(Demo2, _Component);
 	
-	    function Demo2(props) {
+	    function Demo2() {
 	        _classCallCheck(this, Demo2);
 	
-	        var _this = _possibleConstructorReturn(this, _Component.call(this, props));
-	
-	        _this.state = {
-	            show: true
-	        };
-	        _this.a = null;
-	        return _this;
+	        return _possibleConstructorReturn(this, _Component.apply(this, arguments));
 	    }
 	
 	    Demo2.prototype.render = function render() {
 	        return _react2['default'].createElement(
 	            'div',
 	            { className: 'demo2' },
-	            _react2['default'].createElement(
-	                'p',
-	                null,
-	                '\u66FE\u7ECF\u6709\u4E00\u4EFD\u771F\u8BDA\u7684\u7231\u60C5\u653E\u5728\u6211\u9762\u524D\uFF0C\u6211\u6CA1\u6709\u73CD\u60DC\uFF0C\u7B49\u6211\u5931\u53BB\u7684\u65F6\u5019\u6211\u624D\u540E\u6094\u83AB\u53CA\uFF0C\u4EBA\u4E16\u95F4\u6700\u75DB\u82E6\u7684\u4E8B\u83AB\u8FC7\u4E8E\u6B64\u3002 \u5982\u679C\u4E0A\u5929\u80FD\u591F\u7ED9\u6211\u4E00\u4E2A\u518D\u6765\u4E00\u6B21\u7684\u673A\u4F1A\uFF0C\u6211\u4F1A\u5BF9\u90A3\u4E2A\u5973\u5B69\u5B50\u8BF4\u4E09\u4E2A\u5B57\uFF1A\u6211\u7231\u4F60\u3002 \u5982\u679C\u975E\u8981\u5728\u8FD9\u4EFD\u7231\u4E0A\u52A0\u4E0A\u4E00\u4E2A\u671F\u9650\uFF0C\u6211\u5E0C\u671B\u662F\u2026\u2026 \u4E00\u4E07\u5E74'
-	            ),
-	            _react2['default'].createElement(_src2['default'], { container: this, show: this.state.show })
+	            _react2['default'].createElement(_src2['default'], { container: this, show: true })
 	        );
 	    };
 	
@@ -38183,50 +38176,38 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); } /**
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @title 添加描述
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description 通过添加children，来添加Loading的文字描述。size 属性设置加载图标的大小。
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @title 容器
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description 通过document对象的方法，指定`container`属性。
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
-	var Demo3 = function (_Component) {
-	    _inherits(Demo3, _Component);
+	var Demo4 = function (_Component) {
+	    _inherits(Demo4, _Component);
 	
-	    function Demo3(props) {
-	        _classCallCheck(this, Demo3);
+	    function Demo4(props) {
+	        _classCallCheck(this, Demo4);
 	
 	        var _this = _possibleConstructorReturn(this, _Component.call(this, props));
 	
-	        _this.state = {
-	            show: true
+	        _this.getElement = function () {
+	            return document.querySelector('.demo4');
 	        };
-	        _this.a = null;
+	
 	        return _this;
 	    }
 	
-	    Demo3.prototype.render = function render() {
+	    Demo4.prototype.render = function render() {
 	        return _react2['default'].createElement(
 	            'div',
-	            { className: 'demo3' },
-	            _react2['default'].createElement(
-	                'p',
-	                null,
-	                '\u66FE\u7ECF\u6709\u4E00\u4EFD\u771F\u8BDA\u7684\u7231\u60C5\u653E\u5728\u6211\u9762\u524D\uFF0C\u6211\u6CA1\u6709\u73CD\u60DC\uFF0C\u7B49\u6211\u5931\u53BB\u7684\u65F6\u5019\u6211\u624D\u540E\u6094\u83AB\u53CA\uFF0C\u4EBA\u4E16\u95F4\u6700\u75DB\u82E6\u7684\u4E8B\u83AB\u8FC7\u4E8E\u6B64\u3002 \u5982\u679C\u4E0A\u5929\u80FD\u591F\u7ED9\u6211\u4E00\u4E2A\u518D\u6765\u4E00\u6B21\u7684\u673A\u4F1A\uFF0C\u6211\u4F1A\u5BF9\u90A3\u4E2A\u5973\u5B69\u5B50\u8BF4\u4E09\u4E2A\u5B57\uFF1A\u6211\u7231\u4F60\u3002 \u5982\u679C\u975E\u8981\u5728\u8FD9\u4EFD\u7231\u4E0A\u52A0\u4E0A\u4E00\u4E2A\u671F\u9650\uFF0C\u6211\u5E0C\u671B\u662F\u2026\u2026 \u4E00\u4E07\u5E74'
-	            ),
-	            _react2['default'].createElement(
-	                _src2['default'],
-	                {
-	                    describe: true,
-	                    container: this,
-	                    show: this.state.show },
-	                '\u52A0\u8F7D\u4E2D'
-	            )
+	            { className: 'demo4' },
+	            _react2['default'].createElement(_src2['default'], { container: this.getElement, show: true })
 	        );
 	    };
 	
-	    return Demo3;
+	    return Demo4;
 	}(_react.Component);
 	
-	exports['default'] = Demo3;
+	exports['default'] = Demo4;
 	module.exports = exports['default'];
 
 /***/ }),
@@ -38257,47 +38238,44 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); } /**
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @title 将Loading渲染到容器中
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description 通过设置`container`属性，通过传入function的方式，来控制loading渲染位置
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @title 自定义描述文案
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description 通过设置 `tip` 属性，来添加Loading的文字描述。
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
-	var Demo4 = function (_Component) {
-	    _inherits(Demo4, _Component);
+	var Demo3 = function (_Component) {
+	    _inherits(Demo3, _Component);
 	
-	    function Demo4(props) {
-	        _classCallCheck(this, Demo4);
+	    function Demo3(props) {
+	        _classCallCheck(this, Demo3);
 	
 	        var _this = _possibleConstructorReturn(this, _Component.call(this, props));
 	
-	        _this.getElement = function () {
-	            return document.querySelector('.demo4');
-	        };
-	
-	        _this.state = {
-	            show: true
-	        };
 	        _this.a = null;
 	        return _this;
 	    }
 	
-	    Demo4.prototype.render = function render() {
+	    Demo3.prototype.render = function render() {
 	        return _react2['default'].createElement(
 	            'div',
-	            { className: 'demo4' },
+	            { className: 'demo3' },
 	            _react2['default'].createElement(
 	                'p',
 	                null,
 	                '\u66FE\u7ECF\u6709\u4E00\u4EFD\u771F\u8BDA\u7684\u7231\u60C5\u653E\u5728\u6211\u9762\u524D\uFF0C\u6211\u6CA1\u6709\u73CD\u60DC\uFF0C\u7B49\u6211\u5931\u53BB\u7684\u65F6\u5019\u6211\u624D\u540E\u6094\u83AB\u53CA\uFF0C\u4EBA\u4E16\u95F4\u6700\u75DB\u82E6\u7684\u4E8B\u83AB\u8FC7\u4E8E\u6B64\u3002 \u5982\u679C\u4E0A\u5929\u80FD\u591F\u7ED9\u6211\u4E00\u4E2A\u518D\u6765\u4E00\u6B21\u7684\u673A\u4F1A\uFF0C\u6211\u4F1A\u5BF9\u90A3\u4E2A\u5973\u5B69\u5B50\u8BF4\u4E09\u4E2A\u5B57\uFF1A\u6211\u7231\u4F60\u3002 \u5982\u679C\u975E\u8981\u5728\u8FD9\u4EFD\u7231\u4E0A\u52A0\u4E0A\u4E00\u4E2A\u671F\u9650\uFF0C\u6211\u5E0C\u671B\u662F\u2026\u2026 \u4E00\u4E07\u5E74'
 	            ),
-	            _react2['default'].createElement(_src2['default'], { container: this.getElement, show: this.state.show })
+	            _react2['default'].createElement(_src2['default'], {
+	                container: this,
+	                show: true,
+	                tip: 'Loading...'
+	            })
 	        );
 	    };
 	
-	    return Demo4;
+	    return Demo3;
 	}(_react.Component);
 	
-	exports['default'] = Demo4;
+	exports['default'] = Demo3;
 	module.exports = exports['default'];
 
 /***/ }),
