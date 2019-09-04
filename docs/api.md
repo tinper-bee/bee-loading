@@ -30,8 +30,15 @@ import 'bee-loading/build/Loading.css';
 |showBackDrop|是否显示遮罩层|boolean|true|
 |fullScreen|是否全屏显示，若Loading显示在 body 上，建议设置该属性|boolean|false|
 |wrapperClassName|容器样式|string|''|
+|[v2.0.0新增] tip|Loading的文字描述|string|''|
 
 ## 注意事项
-- bee-loading v1.0.7之后的版本将废弃 `color` API
+- bee-loading v2.0.0及之后的版本，使用 `tip` 属性添加Loading的文字描述。使用方法：
+```
+    <Loading
+    show={true} 
+    tip="Loading..."
+    />
+```
 
 ## 更新日志
