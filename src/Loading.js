@@ -100,7 +100,6 @@ class Loading extends Component {
             <div className={`${clsPrefix}-spin`}>{indicator}</div>
             {tip ? <div className={`${clsPrefix}-desc`}>{tip}</div> : null}
           </div>
-          {/* {children && <div className={`${clsPrefix}-desc`}>{children}</div>} */}
         </div>
       );
     } else if (loadingType === "rotate") {
@@ -110,7 +109,6 @@ class Loading extends Component {
             <div className={`${clsPrefix}-spin`}><img src={loadImg}/></div>
             {tip ? <p className={`${clsPrefix}-desc`}>{tip}</p> : null}
           </div>
-          {/* {children && <div className={`${clsPrefix}-desc`}>{children}</div>} */}
         </div>
       );
     } else if (loadingType === "line") {
