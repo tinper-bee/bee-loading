@@ -135,7 +135,7 @@ class Loading extends Component {
       dom = <div className={classnames(backClassObj)}>{dom}</div>;
     }
 
-    return <Portal container={container}>{dom}</Portal>;
+    return typeof window !== 'undefined' ? <Portal container={container}>{dom}</Portal> : <div>{dom}</div>
   }
 }
 Loading.propTypes = propTypes;
