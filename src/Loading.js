@@ -61,6 +61,7 @@ class Loading extends Component {
   render() {
     const {
       clsPrefix,
+      clsLoadBack,
       loadingType,
       size,
       color,

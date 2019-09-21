@@ -36978,6 +36978,7 @@
 	
 	    var _props2 = this.props,
 	        clsPrefix = _props2.clsPrefix,
+	        clsLoadBack = _props2.clsLoadBack,
 	        loadingType = _props2.loadingType,
 	        size = _props2.size,
 	        color = _props2.color,
@@ -36989,7 +36990,7 @@
 	        wrapperClassName = _props2.wrapperClassName,
 	        indicator = _props2.indicator,
 	        tip = _props2.tip,
-	        others = _objectWithoutProperties(_props2, ["clsPrefix", "loadingType", "size", "color", "show", "showBackDrop", "container", "children", "fullScreen", "wrapperClassName", "indicator", "tip"]);
+	        others = _objectWithoutProperties(_props2, ["clsPrefix", "clsLoadBack", "loadingType", "size", "color", "show", "showBackDrop", "container", "children", "fullScreen", "wrapperClassName", "indicator", "tip"]);
 	
 	    if (!show) return null;
 	
