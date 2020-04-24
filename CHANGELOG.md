@@ -1,3 +1,12 @@
+## [2.0.4](https://github.com/tinper-bee/bee-loading/compare/v2.0.3...v2.0.4) (2020-04-24)
+
+
+### Bug Fixes
+
+* 自动化 ([1983fd0](https://github.com/tinper-bee/bee-loading/commit/1983fd0aaadfcfeaeeb4f88fecac709449fab1c1))
+
+
+
 <a name="2.0.3"></a>
 ## [2.0.3](https://github.com/tinper-bee/bee-loading/compare/v2.0.2...v2.0.3) (2019-10-15)
 
