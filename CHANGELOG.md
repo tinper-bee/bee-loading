@@ -1,3 +1,12 @@
+# [2.1.0](https://github.com/tinper-bee/bee-loading/compare/v2.0.4...v2.1.0) (2020-06-29)
+
+
+### Features
+
+* 新增多语,默认loading修改 ([2e58041](https://github.com/tinper-bee/bee-loading/commit/2e58041ea847a379cec41a49a569218889371026))
+
+
+
 ## [2.0.4](https://github.com/tinper-bee/bee-loading/compare/v2.0.3...v2.0.4) (2020-04-24)
 
 
