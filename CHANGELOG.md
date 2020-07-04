@@ -1,3 +1,12 @@
+## [3.0.1](https://github.com/tinper-bee/bee-loading/compare/v3.0.0...v3.0.1) (2020-07-04)
+
+
+### Bug Fixes
+
+* 修复className覆盖自带class问题&container class重复问题 ([df46b4b](https://github.com/tinper-bee/bee-loading/commit/df46b4b7e220402056e08c59ddbf12e96c1c5fcb))
+
+
+
 # [3.0.0](https://github.com/tinper-bee/bee-loading/compare/v2.1.0...v3.0.0) (2020-06-29)
 
 
