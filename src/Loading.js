@@ -55,7 +55,9 @@ class Loading extends Component {
     let { clsPrefix, container } = this.props;
     if(isReact16 && container){
       this.portalContainerNode = this.getContainer(this.props.container);
-      this.portalContainerNode.className += ` ${clsPrefix}-container`;
+      if(this.portalContainerNode.className&&this.portalContainerNode.className.indexOf(`${clsPrefix}-container`)==-1){
+        this.portalContainerNode.className += ` ${clsPrefix}-container`;
+      }
     }
   }
   getContainer(container, defaultContainer){
@@ -77,6 +79,7 @@ class Loading extends Component {
       fullScreen,
       wrapperClassName,
       indicator,
+      className,
       tip,
       ...others
     } = this.props;
@@ -96,6 +99,8 @@ class Loading extends Component {
     );
 
     let classes = classnames(clsPrefix, clsObj);
+
+    if(className)classes+=' '+className;
 
     let dom = "";
 

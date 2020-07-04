@@ -36988,7 +36988,9 @@
 	
 	    if (isReact16 && container) {
 	      this.portalContainerNode = this.getContainer(this.props.container);
-	      this.portalContainerNode.className += " " + clsPrefix + "-container";
+	      if (this.portalContainerNode.className && this.portalContainerNode.className.indexOf(clsPrefix + "-container") == -1) {
+	        this.portalContainerNode.className += " " + clsPrefix + "-container";
+	      }
 	    }
 	  };
 	
@@ -37017,14 +37019,17 @@
 	        fullScreen = _props2.fullScreen,
 	        wrapperClassName = _props2.wrapperClassName,
 	        indicator = _props2.indicator,
+	        className = _props2.className,
 	        tip = _props2.tip,
-	        others = _objectWithoutProperties(_props2, ["clsPrefix", "clsLoadBack", "loadingType", "size", "color", "show", "showBackDrop", "container", "children", "fullScreen", "wrapperClassName", "indicator", "tip"]);
+	        others = _objectWithoutProperties(_props2, ["clsPrefix", "clsLoadBack", "loadingType", "size", "color", "show", "showBackDrop", "container", "children", "fullScreen", "wrapperClassName", "indicator", "className", "tip"]);
 	
 	    if (!show) return null;
 	
 	    var clsObj = (0, _classnames3["default"])(clsPrefix, (_classnames = {}, _defineProperty(_classnames, clsPrefix + "-" + loadingType, true), _defineProperty(_classnames, clsPrefix + "-" + loadingType + "-sm", size === 'sm'), _defineProperty(_classnames, clsPrefix + "-" + loadingType + "-lg", size === 'lg'), _defineProperty(_classnames, clsPrefix + "-" + loadingType + "-" + color, !!color), _defineProperty(_classnames, clsPrefix + "-show-text", !!tip), _classnames), wrapperClassName);
 	
 	    var classes = (0, _classnames3["default"])(clsPrefix, clsObj);
+	
+	    if (className) classes += ' ' + className;
 	
 	    var dom = "";
 	
